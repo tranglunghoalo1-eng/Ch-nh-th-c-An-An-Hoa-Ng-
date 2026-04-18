@@ -2140,6 +2140,10 @@
       line-height: 1.8;
     }
 
+    /* CTA button - show full text on desktop, short on mobile */
+    .cta-short { display: none; }
+    .cta-full { display: inline; }
+
     /* ===== RESPONSIVE ===== */
     /* ===== UNIFIED MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
@@ -2243,10 +2247,47 @@
       .social-link-card { flex: 0 0 auto !important; min-width: 90px !important; text-align: center !important; justify-content: center; flex-direction: column; gap: 4px !important; }
       .social-link-card span { font-size: 18px !important; }
       
-      /* HÌNH 4: Success spotlight h3 - wrap and center */
+      /* HìNH 4: Success spotlight h3 - wrap and center */
       .feedback-gallery-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
       .success-spotlight { padding: 30px 16px !important; margin: 40px auto 0 !important; border-radius: 20px !important; }
       .success-spotlight h3 { font-size: 15px !important; white-space: normal !important; word-break: break-word !important; line-height: 1.4 !important; text-align: center !important; }
+      
+      /* HìNH 1 (mới): Header CTA - Chỉ hiện chữ "Đăng ký" trên mobile */
+      .cta-full { display: none !important; }
+      .cta-short { display: inline !important; }
+      
+      /* HìNH 2 (mới): Form đăng ký đầu trang - căn trái, tiêu đề và nút mỗi cái 1 dòng */
+      .lead-form-hero > div:first-child { text-align: left !important; }
+      .lead-form-hero > div:first-child strong { display: block !important; text-align: left !important; }
+      .lead-form-hero > div:first-child p { text-align: left !important; }
+      .lead-form-hero .btn-submit { display: block !important; width: 100% !important; }
+      
+      /* HìNH 2 (mới): Form đăng ký cuối trang - căn trái */
+      .register-form-v2 > div:first-child { text-align: left !important; }
+      .register-form-v2 > div:first-child strong { display: block !important; text-align: left !important; }
+      .register-form-v2 > div:first-child p { text-align: left !important; }
+      .register-form-v2 .btn-submit { display: block !important; width: 100% !important; }
+      
+      /* HìNH 3 (mới): Social links - 1 hàng ngang, không xuống dòng */
+      .social-grid { 
+        flex-direction: row !important; 
+        flex-wrap: nowrap !important; 
+        justify-content: flex-start !important; 
+        gap: 8px !important; 
+        overflow-x: auto !important;
+      }
+      .social-link-card { 
+        flex: 0 0 auto !important; 
+        min-width: 80px !important; 
+        max-width: 110px !important;
+        padding: 8px 10px !important; 
+        font-size: 11px !important;
+        text-align: center !important; 
+        justify-content: center !important; 
+        flex-direction: column !important; 
+        gap: 3px !important; 
+      }
+      .social-link-card span { font-size: 16px !important; }
     }
 
     /* Trial section base styles */
@@ -2319,7 +2360,10 @@
       </span>
     </div>
 
-    <a href="#form-hero" class="header-cta" id="header-cta-top">Đăng ký tư vấn</a>
+    <a href="#form-hero" class="header-cta" id="header-cta-top">
+      <span class="cta-full">Đăng ký tư vấn</span>
+      <span class="cta-short">Đăng ký</span>
+    </a>
   </header>
 
   <!-- HERO -->
