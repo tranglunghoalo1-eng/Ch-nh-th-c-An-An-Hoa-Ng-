@@ -44,6 +44,7 @@
     letter-spacing: 0.3px;
   }
   .topbar span { color: var(--gold); }
+  .topbar-text-mobile { display: none; }
 
   /* ===== HEADER ===== */
   header {
@@ -278,12 +279,38 @@
   .section-desc { font-size: 15px; color: var(--text-muted); max-width: 600px; line-height: 1.8; }
 
   /* ===== PAIN POINTS ===== */
-  .pain-section { background: var(--white); }
+  .pain-section { 
+    background: var(--white); 
+    padding: 80px 20px;
+  }
+  .pain-section .section-inner {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .pain-section .section-title {
+    margin-bottom: 20px;
+    font-size: clamp(28px, 4vw, 42px);
+  }
+  .pain-section .section-desc {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    max-width: 750px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+  
   .pain-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    margin-top: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .pain-grid { grid-template-columns: 1fr; }
   }
   .pain-card {
     border: 1.5px solid var(--border);
@@ -291,6 +318,12 @@
     padding: 24px;
     background: var(--cream);
     position: relative;
+    transition: all 0.3s ease;
+  }
+  .pain-card:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
   }
   .pain-icon {
     width: 44px; height: 44px;
@@ -300,34 +333,70 @@
     font-size: 20px;
     margin-bottom: 14px;
   }
-  .pain-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .pain-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
   .pain-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
-
+  
   /* ===== SOLUTION ===== */
-  .solution-section { background: var(--red); color: var(--white); }
-  .solution-section .section-title { color: var(--white); }
-  .solution-section .section-desc { color: rgba(255,255,255,0.85); }
+  .solution-section { 
+    background: linear-gradient(165deg, #bf2436 0%, #8a1a27 100%); 
+    color: var(--white); 
+    padding: 100px 20px;
+  }
+  .solution-section .section-tag {
+    background: rgba(255,255,255,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .solution-section .section-title { color: var(--white); margin-bottom: 40px; }
+  .solution-section .section-desc { 
+    color: rgba(255,255,255,0.9); 
+    max-width: 800px; 
+    margin: 0 auto 50px;
+    font-size: 16px;
+  }
   .solution-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-top: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 20px;
+  }
+  @media (max-width: 900px) {
+    .solution-grid { grid-template-columns: 1fr; gap: 20px; }
   }
   .solution-card {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 16px;
-    padding: 24px;
+    background: var(--white);
+    border-radius: 24px;
+    padding: 35px 30px;
+    transition: transform 0.3s;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
+  .solution-card:hover { transform: translateY(-8px); }
   .solution-num {
-    font-size: 40px;
+    font-size: 56px;
     font-weight: 900;
-    color: var(--gold);
+    color: rgba(191,36,54,0.1);
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: -15px;
+    font-family: Arial, sans-serif;
   }
-  .solution-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--gold); }
-  .solution-card p { font-size: 13px; opacity: 0.88; line-height: 1.6; }
+  .solution-card h4 { 
+    font-size: 18px; 
+    font-weight: 800; 
+    margin-bottom: 12px; 
+    color: var(--red);
+    position: relative;
+    z-index: 1;
+  }
+  .solution-card p { 
+    font-size: 14px; 
+    color: var(--text); 
+    line-height: 1.7;
+    opacity: 0.9;
+  }
 
   /* ===== CURRICULUM ===== */
   .curriculum-section { background: var(--cream); }
@@ -439,14 +508,57 @@
     font-size: 15px;
     margin-top: 1px;
   }
-  .timeline { margin-top: 20px; }
-  .timeline-item { display: flex; gap: 16px; margin-bottom: 14px; }
-  .tl-year {
-    font-size: 13px; font-weight: 800; color: var(--red);
-    flex-shrink: 0; min-width: 42px;
-    padding-top: 2px;
+  /* ===== COLLAPSIBLE TIMELINE ===== */
+  .timeline-details {
+    margin-top: 25px;
+    border: 1px solid rgba(191,36,54,0.1);
+    border-radius: 16px;
+    background: #fff;
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
-  .tl-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .timeline-details[open] {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-color: rgba(191,36,54,0.3);
+  }
+  .timeline-summary {
+    list-style: none;
+    padding: 18px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fafafa;
+    color: var(--red);
+    font-weight: 800;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  .timeline-summary::-webkit-details-marker { display: none; }
+  .timeline-summary:hover { background: #fdf2f3; }
+  .timeline-summary::after {
+    content: '↓';
+    font-size: 20px;
+    font-weight: normal;
+    transition: transform 0.3s ease;
+  }
+  .timeline-details[open] .timeline-summary::after {
+    transform: rotate(180deg);
+    content: '↑';
+  }
+  .timeline-content {
+    padding: 0 24px 24px;
+  }
+  .vertical-timeline { position: relative; margin-top: 20px; padding-left: 20px; }
+  .vertical-timeline::before { content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: rgba(191,36,54,0.15); }
+  .vt-item { position: relative; margin-bottom: 24px; padding-left: 15px; text-align: left; }
+  .vt-item::before { content: ""; position: absolute; left: -24px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--red); box-shadow: 0 0 0 4px #fff; z-index: 2; }
+  .vt-year { font-size: 15px; font-weight: 800; color: var(--red); margin-bottom: 6px; font-family: 'Inter', sans-serif; }
+  .vt-content { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .vt-content ul { padding-left: 18px; margin-top: 8px; }
+  .vt-content li { margin-bottom: 6px; }
 
   /* ===== NUMBERS ===== */
   .numbers-section {
@@ -548,57 +660,121 @@
   .pricing-section { background: var(--cream); }
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
-    max-width: 700px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 25px;
+    margin-top: 50px;
+    max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
+    align-items: stretch;
+  }
+  /* Desktop Layout: 3 cards top, 2 cards bottom centered */
+  .pricing-grid > .price-card:nth-child(1),
+  .pricing-grid > .price-card:nth-child(2),
+  .pricing-grid > .price-card:nth-child(3) {
+    grid-column: span 2;
+  }
+  .pricing-grid > .price-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+  .pricing-grid > .price-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+  @media (max-width: 1250px) {
+    .pricing-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  }
+  @media (max-width: 950px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .pricing-grid > .price-card:nth-child(n) {
+      grid-column: span 1 !important;
+    }
   }
   .price-card {
     background: var(--white);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 32px 28px;
+    padding: 40px 25px 30px;
     text-align: center;
     position: relative;
     transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .price-card > *:last-child {
+    margin-top: auto;
   }
   .price-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
   .price-card.featured {
-    border-color: var(--red);
+    border: 2px solid var(--red);
     box-shadow: var(--shadow-lg);
   }
   .price-badge-top {
     position: absolute;
-    top: -14px; left: 50%; transform: translateX(-50%);
+    top: -12px; left: 50%; transform: translateX(-50%);
     background: var(--red);
     color: var(--white);
-    font-size: 12px; font-weight: 700;
-    padding: 5px 18px;
+    font-size: 11px; font-weight: 800;
+    padding: 4px 15px;
     border-radius: 20px;
     white-space: nowrap;
+    z-index: 2;
   }
-  .price-type { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .price-type { 
+    font-size: 14.5px; 
+    line-height: 1.3;
+    font-weight: 800;
+    color: var(--text-muted); 
+    margin-bottom: 8px; 
+    letter-spacing: 0.2px; 
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  .price-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+  }
   .price-amount {
     font-size: 46px;
     font-weight: 900;
     color: var(--red);
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 15px;
+    text-align: center;
   }
-  .price-unit { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
-  .price-features { list-style: none; text-align: left; margin-bottom: 24px; }
+  .price-features { 
+    list-style: none; 
+    text-align: left; 
+    margin-top: 15px;
+    margin-bottom: 25px;
+    flex-grow: 1;
+    padding: 0;
+  }
   .price-features li {
     font-size: 13px;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0eeeb;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+    letter-spacing: normal;
   }
   .price-features li::before {
-    content: '✓';
-    color: var(--red);
-    font-weight: 800;
+    content: "✓";
+    color: #bf2436;
+    font-weight: 900;
     font-size: 14px;
     flex-shrink: 0;
   }
@@ -606,20 +782,19 @@
     display: block;
     background: var(--red);
     color: var(--white);
-    padding: 14px;
+    padding: 12px;
     border-radius: 12px;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 14px;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    border: 1px solid var(--red);
   }
-  .btn-price:hover { background: var(--red-dark); }
   .btn-price.outline {
     background: transparent;
-    border: 2px solid var(--red);
     color: var(--red);
   }
-  .btn-price.outline:hover { background: var(--red); color: var(--white); }
+  .btn-price:hover { background: var(--red-dark); color: var(--white); }
 
   /* ===== REGISTER SECTION ===== */
   .register-section {
@@ -871,8 +1046,12 @@
     border-radius: 20px;
     overflow: hidden;
     transition: box-shadow 0.2s, transform 0.2s;
+    height: fit-content;
   }
-  .em-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .em-card[open] { box-shadow: var(--shadow-lg); }
+  .em-card summary { cursor: pointer; list-style: none; outline: none; }
+  .em-card summary::-webkit-details-marker { display: none; }
+  
   .em-header {
     background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
     color: var(--white);
@@ -882,6 +1061,12 @@
     justify-content: space-between;
     gap: 12px;
   }
+  .em-header::after {
+    content: '▼';
+    font-size: 10px;
+    transition: transform 0.3s;
+  }
+  .em-card[open] .em-header::after { transform: rotate(180deg); }
   .em-header-left { display: flex; align-items: center; gap: 12px; }
   .em-num {
     width: 36px; height: 36px;
@@ -1005,24 +1190,124 @@
   .guarantee-text p { font-size: 14px; color: var(--text); line-height: 1.8; }
 
   /* ===== RESPONSIVE ===== */
+  /* ===== UNIFIED MOBILE RESPONSIVE ===== */
+  /* ===== UNIFIED MOBILE RESPONSIVE ===== */
   @media (max-width: 768px) {
-    header { padding: 12px 20px; }
-    section { padding: 50px 20px; }
-    .hero { padding: 50px 20px 60px; }
-    .lead-form-hero { padding: 26px 22px; }
-    .mentor-inner { grid-template-columns: 1fr; gap: 30px; }
-    .numbers-grid { grid-template-columns: repeat(2, 1fr); }
-    .numbers-grid .number-item:last-child { grid-column: 1/-1; }
-    .footer-inner { grid-template-columns: 1fr; gap: 24px; }
-    .sticky-bottom { padding: 10px 16px; }
+    header { padding: 12px 16px !important; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .logo-img { height: 44px; }
+    .header-cta { padding: 8px 16px; font-size: 13px; white-space: nowrap !important; margin: 5px 0; }
+    .topbar { font-size: 13px; padding: 10px 16px; }
+    .topbar-text-full { display: none; }
+    .topbar-text-mobile { display: block; font-weight: 800; line-height: 1.2; }
+    .topbar-text-mobile div:last-child { font-size: 12px !important; margin-top: 2px; }
+    
+    body { font-size: 14px; }
+    section { padding: 40px 16px !important; overflow-x: hidden !important; }
+    .section-inner { width: 100% !important; margin: 0 auto; padding: 0 !important; }
+    
+    .section-title { font-size: 24px !important; line-height: 1.25 !important; word-wrap: break-word !important; padding: 0 !important; margin-bottom: 20px !important; }
+    .section-desc { font-size: 14px !important; margin-bottom: 25px !important; line-height: 1.7; padding: 0 !important; }
+    
+    .hero { padding: 30px 16px 50px !important; text-align: center; }
+    .hero h1 { font-size: 24px !important; white-space: nowrap !important; line-height: 1.2; }
+    .hero-h2 { font-size: 16px !important; line-height: 1.3; margin-bottom: 20px; }
+    .hero-mentor-img { max-height: 35vh; margin: 0 auto; }
+
+    .lead-form-hero { padding: 25px 16px !important; width: 100% !important; margin: 20px auto 0 !important; box-sizing: border-box !important; border-radius: 20px !important; }
+    .lead-form-hero h3 { font-size: 19px !important; line-height: 1.3; }
+    
+    .faq-item, .pain-card, .solution-card, .module-card, .em-card, .mentor-credentials li, .classroom-inner { 
+      margin: 0 auto 15px !important; 
+      width: 90% !important;
+      max-width: 310px !important;
+      box-sizing: border-box !important;
+    }
+    
+    .mentor-info h3 { font-size: 28px !important; margin-bottom: 5px !important; }
+    .mentor-title { font-size: 13px !important; margin-bottom: 15px !important; }
+    .mentor-credentials { gap: 8px !important; margin-bottom: 20px !important; }
+    .mentor-credentials li { padding: 12px 15px !important; font-size: 12.5px !important; }
+
+    .solution-grid { grid-template-columns: 1fr !important; gap: 20px; display: grid !important; }
+    .solution-card { padding: 25px 20px !important; border-radius: 20px !important; }
+    .solution-num { font-size: 42px !important; margin-bottom: -10px !important; }
+    .solution-card h4 { font-size: 16px !important; margin-bottom: 8px !important; }
+    .solution-card p { font-size: 13px !important; line-height: 1.6 !important; }
+    
+    .register-section h2, .register-section p { margin: 0 auto 15px !important; width: 90% !important; max-width: 310px !important; text-align: center !important; }
+    .register-section h2 { font-size: 18px !important; line-height: 1.3 !important; }
+    .register-section p { font-size: 13.5px !important; line-height: 1.6 !important; }
+    .register-form { 
+      margin: 0 auto !important; 
+      width: 90% !important; 
+      max-width: 310px !important;
+      padding: 25px 16px !important; 
+      box-sizing: border-box !important;
+    }
+
+    .footer-inner { grid-template-columns: 1fr !important; gap: 25px; text-align: center; padding: 30px 25px !important; }
+    .footer-col { align-items: center !important; }
+    .footer-col a, .footer-col p { word-break: break-all; margin-bottom: 8px !important; line-height: 1.4 !important; }
+    
+    .feedback-gallery-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .success-spotlight { padding: 30px 25px !important; margin: 40px auto 0 !important; max-width: 360px !important; border-radius: 20px !important; }
+    .success-spotlight h3 { font-size: 14px !important; white-space: nowrap !important; }
+    
+    .numbers-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 15px !important; }
+    .number-item { padding: 20px 10px !important; }
+    .curriculum-tabs { grid-template-columns: 1fr !important; }
+    .pricing-grid { grid-template-columns: 1fr !important; max-width: 450px; gap: 20px; }
   }
+  
+  /* Trial section base styles */
+  .trial-container {
+    display: block; 
+    max-width: 600px; 
+    margin: 0 auto; 
+    background: var(--white); 
+    border-radius: 30px; 
+    overflow: hidden; 
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+  }
+  .trial-benefits { padding: 50px; background: var(--red); color: #fff; }
+  .trial-form-wrap { padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+
+  /* ===== FOMO & URGENCY STYLES ===== */
+  .pulse-dot {
+    width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block;
+    margin-right: 8px; box-shadow: 0 0 0 rgba(34,197,94,0.4); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); } 70% { box-shadow: 0 0 0 10px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
+  .highlight-gold { color: var(--gold); font-weight: 900; text-decoration: underline; }
+  .gold-text { color: var(--gold); }
+  .shadow-premium { box-shadow: 0 25px 50px -12px rgba(191,36,54,0.25) !important; border: 1px solid var(--red-light) !important; }
+  .hero-benefits-list { margin-bottom: 25px; text-align: left; }
+  .benefit-item { font-size: 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: #fff; }
+  
+  /* FLOATING TOAST */
+  #floating-toast {
+    position: fixed; bottom: 80px; left: 20px; 
+    background: #fff; padding: 12px 18px; border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 12px;
+    z-index: 1000; transform: translateY(200%); transition: transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    max-width: 280px; border-left: 4px solid var(--red);
+  }
+  #floating-toast.show { transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
+<!-- TOPBAR WITH COUNTDOWN -->
 <div class="topbar">
-  🔥 Khai giảng liên tục — Chỉ còn <span>5–8 suất</span> cho lớp offline tháng này! Đăng ký ngay để giữ chỗ.
+  <div class="topbar-inner">
+    <span class="pulse-dot"></span> 
+    <span class="topbar-text-full">🔥 ƯU ĐÃI GIẢM 50% chỉ còn <span id="countdown-timer">05:00</span> phút — Chỉ còn <span class="highlight-gold">3 suất</span> cuối cùng!</span>
+    <span class="topbar-text-mobile">
+      <div>🔥 GIẢM 50%</div>
+      <div style="font-size: 12px; margin-top:2px;"><span class="countdown-sync">05:00</span> - <span class="highlight-gold">CÒN 3 SUẤT!</span></div>
+    </span>
+  </div>
 </div>
 
 <!-- HEADER -->
@@ -1030,7 +1315,7 @@
   <div class="logo-area">
     <img class="logo-img" src="images/logo.png" alt="An An Hoa Ngữ">
   </div>
-  <a href="#form-hero" class="header-cta">Đăng ký tư vấn miễn phí</a>
+  <a href="#form-hero" class="header-cta">Đăng ký tư vấn</a>
 </header>
 
 <!-- HERO -->
@@ -1040,25 +1325,18 @@
 
       <!-- LEFT: Content -->
       <div class="hero-left">
-        <div class="hero-badge">✨ Khoá học thực chiến #1 Đà Nẵng</div>
+        <div class="hero-badge">✨ Bí mật từ Top 1% người kinh doanh Order</div>
         <h1>Nhập Hàng Trung Quốc</h1>
-        <div class="hero-h2">Không Cần Biết Tiếng, Không Cần Vốn Lớn</div>
+        <div class="hero-h2">Sở Hữu "Công Thức Hái Ra Tiền" <br><span class="gold-text">Chỉ Với Vốn 0 Đồng</span></div>
         <p class="hero-sub">Dạy Chân Thành – Học Thành Danh</p>
         
         <div class="hero-stats">
-          <div class="stat-item"><span class="stat-num">9 năm</span><span class="stat-label">Kinh nghiệm</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat-item"><span class="stat-num">2000+</span><span class="stat-label">Học viên</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat-item"><span class="stat-num">6 Năm</span><span class="stat-label">Đào tạo</span></div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-num">44.800+</span>
-            <span class="stat-label">Thành viên cộng đồng KHỞI NGHIỆP ORDER</span>
-          </div>
+          <div class="stat-item"><span class="stat-num">9 năm</span><span class="stat-label" style="color:#fff;">Kinh nghiệm</span></div>
+          <div class="stat-divider" style="width:1px; height:30px; background:rgba(255,255,255,0.2);"></div>
+          <div class="stat-item"><span class="stat-num">2000+</span><span class="stat-label" style="color:#fff;">Học viên</span></div>
+          <div class="stat-divider" style="width:1px; height:30px; background:rgba(255,255,255,0.2);"></div>
+          <div class="stat-item"><span class="stat-num">6 Năm</span><span class="stat-label" style="color:#fff;">Đào tạo</span></div>
         </div>
-
-        <p class="hero-desc">Từ con số 0, học cách tự nhập hàng trực tiếp từ Taobao, 1688, Pinduoduo — không qua trung gian, lãi thật từ ngày đầu tiên.</p>
 
         <div class="hero-tags">
           <span class="hero-tag">✅ Không cần tiếng Trung</span>
@@ -1067,7 +1345,7 @@
         </div>
 
         <div class="lead-form-hero" id="form-hero">
-          <h3>🎯 Nhận Tư Vấn Miễn Phí</h3>
+          <h3>📋 Đăng Ký Tư Vấn & Giữ Chỗ</h3>
           <div class="form-row">
             <input type="text" id="hero-name" placeholder="Họ và tên *">
           </div>
@@ -1076,6 +1354,16 @@
           </div>
           <div class="form-row">
             <input type="text" id="hero-city" placeholder="Tỉnh / Thành phố">
+          </div>
+          <div class="form-row">
+            <select id="hero-course">
+              <option value="">-- Hình thức học mong muốn --</option>
+              <option value="Dinh huong 0D">ĐỊNH HƯỚNG NGHỀ ORDER (Học thử 0Đ)</option>
+              <option value="Workshop 199K">THỰC HÀNH MUA HÀNG (Workshop 199K)</option>
+              <option value="Elearning 4TR">NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN (E-learning 4TR)</option>
+              <option value="Online 6TR">CHUYÊN SÂU NGHỀ ORDER (Online 6TR)</option>
+              <option value="Offline 8TR">CHUYÊN SÂU NGHỀ ORDER (Offline 8TR)</option>
+            </select>
           </div>
           <div class="form-row">
             <select id="hero-goal">
@@ -1110,29 +1398,15 @@
 <!-- PAIN POINTS -->
 <section class="pain-section">
   <div class="section-inner">
-    <div class="section-tag">Bạn đang gặp vấn đề này?</div>
+    <div class="section-tag">An An Hoa Ngữ</div>
     <h2 class="section-title">Muốn Kinh Doanh Online<br><span class="red">Nhưng Chưa Biết Bắt Đầu Từ Đâu?</span></h2>
-    <p class="section-desc">80% người mới khởi nghiệp thất bại vì không có hệ thống. Bạn có đang rơi vào những tình huống này không?</p>
+    <p class="section-desc">80% người mới khởi nghiệp thất bại vì không có hệ thống. Bạn có đang rơi vào tình huống này không?</p>
+    
     <div class="pain-grid">
-      <div class="pain-card">
-        <div class="pain-icon">😓</div>
-        <h4>Nhập hàng qua trung gian — lãi mỏng như tờ giấy</h4>
-        <p>Mua qua các dịch vụ order, phí chồng phí, không kiểm soát được giá nhập, không chủ động được hàng.</p>
-      </div>
       <div class="pain-card">
         <div class="pain-icon">🤷</div>
         <h4>Không biết tiếng Trung — tự ti không dám thử</h4>
         <p>Thấy giao diện toàn chữ Trung, sợ nhập nhầm, sợ mất tiền. Không biết mình có làm được không.</p>
-      </div>
-      <div class="pain-card">
-        <div class="pain-icon">📦</div>
-        <h4>Không biết nguồn hàng ngách nào còn có lãi</h4>
-        <p>Chọn hàng theo trend thì "chào thua" vì ai cũng bán, giá cạnh tranh đến mức không còn lãi.</p>
-      </div>
-      <div class="pain-card">
-        <div class="pain-icon">💸</div>
-        <h4>Vốn ít, sợ rủi ro, không dám đặt đơn lớn</h4>
-        <p>Muốn test thị trường nhưng sợ hàng về không bán được, ôm hàng tồn kho, mất cả vốn lẫn lãi.</p>
       </div>
       <div class="pain-card">
         <div class="pain-icon">😤</div>
@@ -1150,24 +1424,25 @@
 
 <!-- SOLUTION -->
 <section class="solution-section">
-  <div class="section-inner">
-    <div class="section-tag" style="background:rgba(249,223,172,0.2); color:var(--gold);">Giải pháp dành cho bạn</div>
-    <h2 class="section-title">KHOÁ HỌC CHUYÊN SÂU NGHỀ ORDER &<br>KHOÁ HỌC NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN<br><span style="color:rgba(255,255,255,0.85); font-size: 0.8em;">Sẽ Cho Bạn Chính Xác Những Gì Bạn Cần</span></h2>
+  <div class="section-inner" style="text-align: center;">
+    <div class="section-tag">Giải pháp dành cho bạn</div>
+    <h2 class="section-title">KHOÁ HỌC CHUYÊN SÂU NGHỀ ORDER &<br>KHOÁ HỌC NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN</h2>
     <p class="section-desc">Không học lý thuyết suông — mỗi buổi học là thao tác thật, đơn hàng thật, tiền thật.</p>
-    <div class="solution-grid" style="grid-template-columns: repeat(3, 1fr);">
+    
+    <div class="solution-grid">
       <div class="solution-card">
         <div class="solution-num">01</div>
-        <h4>Tự nhập hàng, không qua trung gian</h4>
+        <h4>Tự nhập hàng, trực tiếp</h4>
         <p>Thao tác trực tiếp trên Taobao, 1688, Pinduoduo, Dewu, Xiaohongshu bằng tay của bạn.</p>
       </div>
       <div class="solution-card">
         <div class="solution-num">02</div>
-        <h4>Tính giá đúng, lãi thật từ đơn đầu tiên</h4>
+        <h4>Tính giá đúng, lãi thật</h4>
         <p>Học công thức tính giá về tay, phí vận chuyển, thuế — biết ngay đơn nào có lãi, đơn nào nên bỏ qua.</p>
       </div>
       <div class="solution-card">
         <div class="solution-num">03</div>
-        <h4>Tìm sản phẩm ngách WIN có lợi thế cạnh tranh</h4>
+        <h4>Sản phẩm ngách WIN</h4>
         <p>Công thức chọn hàng độc quyền — không copy trend, không chạy theo đám đông, giá không ai cạnh được.</p>
       </div>
     </div>
@@ -1309,13 +1584,37 @@
           <li><span class="check">✓</span> Chủ cộng đồng KINH NGHIỆM KHỞI NGHIỆP ORDER TAOBAO/1688 - XOÁ MÙ NHẬP HÀNG 44,8K+ thành viên</li>
           <li><span class="check">✓</span> Dẫn đoàn 25 học viên sang Hà Khẩu – Trung Quốc đánh hàng thực tế</li>
         </ul>
-        <div class="timeline">
-          <div class="timeline-item"><div class="tl-year">2018</div><div class="tl-text">Bắt đầu bán hàng order Taobao qua trung gian từ con số 0</div></div>
-          <div class="timeline-item"><div class="tl-year">2019</div><div class="tl-text">Thành thạo nhập hàng TQ trực tiếp, vừa bán hàng vừa làm dịch vụ order</div></div>
-          <div class="timeline-item"><div class="tl-year">2020</div><div class="tl-text">Mở lớp dạy order – thành lập Cty TNHH An An Hoa Ngữ</div></div>
-          <div class="timeline-item"><div class="tl-year">2023</div><div class="tl-text">Dẫn đoàn 25 học viên sang Hà Khẩu, Trung Quốc đánh hàng & du lịch thực tế</div></div>
-          <div class="timeline-item"><div class="tl-year">Nay</div><div class="tl-text">6 khoá học, hơn 1.700 học viên – tiếp tục viết thêm những chương mới</div></div>
-        </div>
+        <details class="timeline-details">
+          <summary class="timeline-summary">Hành trình sự nghiệp</summary>
+          <div class="timeline-content">
+            <div class="vertical-timeline">
+              <div class="vt-item">
+                <div class="vt-year">2018 - 2019</div>
+                <div class="vt-content">Khởi nghiệp order Taobao từ số 0 & làm chủ quy trình nhập hàng trực tiếp 1688, Pinduoduo.</div>
+              </div>
+              <div class="vt-item">
+                <div class="vt-year">2020 - 2023</div>
+                <div class="vt-content">Thành lập An An Hoa Ngữ; Dẫn đoàn học viên đánh hàng thực tế tại Hà Khẩu, Trung Quốc.</div>
+              </div>
+              <div class="vt-item">
+                <div class="vt-year">2024 - 2025</div>
+                <div class="vt-content">
+                  Dẫn đầu xu hướng đào tạo "Nghề Order" thực chiến:
+                  <ul>
+                    <li>Workshop tại Cao Đẳng FPT Polytechnic Hà Nội & Đà Nẵng.</li>
+                    <li>Ban Giám Khảo cuộc thi Logential chuyên ngành Logistics.</li>
+                    <li>Diễn giả chuyên đề "Ứng dụng AI doanh nghiệp" tại ĐH Đông Á.</li>
+                    <li>Đào tạo thành công hơn 300 chủ shop kinh doanh thành công.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="vt-item">
+                <div class="vt-year">2026</div>
+                <div class="vt-content">Giám đốc đào tạo - JCI Hội An (Liên đoàn Lãnh đạo trẻ Thế giới tại Hội An).</div>
+              </div>
+            </div>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -1344,11 +1643,11 @@
 </section>
 
 <!-- CLASSROOM PROOF -->
-<section style="background: var(--white); padding: 70px 40px;">
-  <div class="section-inner">
-    <div class="section-tag">Không gian học tập thực chiến</div>
-    <h2 class="section-title">Lớp Học Thật · Người Thật<br><span class="red">Kết Quả Thật Từ Ngày Đầu Tiên</span></h2>
-    <p class="section-desc" style="margin-bottom: 32px;">Mỗi lớp chỉ 15–20 học viên — cô giáo cầm tay chỉ việc từng người, đảm bảo ai cũng làm được đơn hàng thật ngay trong buổi học.</p>
+<section style="background: var(--white); padding: 70px 16px;">
+  <div class="section-inner classroom-inner">
+    <div class="section-tag" style="margin-bottom: 12px;">Không gian học tập thực chiến</div>
+    <h2 class="section-title" style="font-size: 22px !important;">Lớp Học Thật · Người Thật<br><span class="red">Kết Quả Thật Từ Ngày Đầu Tiên</span></h2>
+    <p class="section-desc" style="margin-bottom: 25px; font-size: 13.5px !important; line-height: 1.6;">Mỗi lớp chỉ 15–20 học viên — cô giáo cầm tay chỉ việc từng người, đảm bảo ai cũng làm được đơn hàng thật ngay trong buổi học.</p>
     <div style="border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); position: relative;">
       <img
         src="images/teaching_class.png"
@@ -1397,7 +1696,7 @@
       >
     </div>
 
-    <div class="testimonials-grid" style="display: flex; gap: 16px; justify-content: space-between; margin-top: 40px;">
+    <div class="testimonials-grid" style="margin-top: 40px;">
       
       <div class="testi-card" style="flex: 1; background:var(--white); border:1.5px solid var(--border); border-radius:12px; padding:20px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow);">
         <div>
@@ -1455,6 +1754,32 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- FEEDBACK GALLERY GRID -->
+    <div class="feedback-gallery-grid" style="margin-top: 40px;">
+      <div class="feedback-item">
+        <img src="images/Feedback%20%20-%20của%20học%20viên%20(1).png" alt="Feedback học viên 1" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border); background: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="feedback-item">
+        <img src="images/Feedback%20%20-%20của%20học%20viên%20(2).png" alt="Feedback học viên 2" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border); background: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="feedback-item">
+        <img src="images/Feedback%20%20-%20của%20học%20viên.png" alt="Feedback học viên 3" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border); background: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="feedback-item">
+        <img src="images/Feedback.png" alt="Feedback học viên 4" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border); background: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+    </div>
+    <!-- SUCCESS SPOTLIGHT -->
+    <div class="success-spotlight" style="margin-top: 60px; background: #fffafb; border: 2px solid #fcebeb; border-radius: 24px; text-align: center;">
+      <h3 style="font-size: clamp(20px, 3vw, 28px); font-weight: 900; color: var(--text); margin-bottom: 24px; line-height: 1.3;">
+        🚀 HỌC VIÊN <span class="red">KIẾM GẦN 100 TRIỆU</span> CHỈ SAU 4 THÁNG HỌC
+      </h3>
+      <div style="max-width: 800px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(191,36,54,0.12);">
+        <img src="images/feedback%20aahnn%20(1).png" alt="Kết quả kinh doanh học viên 100 triệu" style="width: 100%; display: block;">
+      </div>
+      <p style="margin-top: 20px; font-size: 14px; color: var(--text-muted); font-style: italic;">"Kết quả thực tế từ học viên lớp Chuyên Sâu Nghề Order"</p>
     </div>
   </div>
 </section>
@@ -1522,189 +1847,105 @@
     <div class="elearning-modules">
 
       <!-- MODULE 1 -->
-      <div class="em-card">
-        <div class="em-header">
+      <details class="em-card" open>
+        <summary class="em-header">
           <div class="em-header-left">
             <div class="em-num">1</div>
             <h4>Khởi Động<br>Hệ Sinh Thái Nhập Hàng</h4>
           </div>
           <div class="em-price-tag">500k</div>
-        </div>
+        </summary>
         <div class="em-body">
           <div class="em-meta"><span>5 bài học</span> · Làm quen hệ sinh thái nhập hàng</div>
           <ul class="em-list">
-            <li>
-              <span class="em-lesson-num">B1</span>
-              <span>Nghề order — Xu hướng & cơ hội kiếm tiền</span>
-              <span class="em-lesson-time">2:36</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B2</span>
-              <span>Nắm vững 5 sàn TMĐT nhập hàng chính của TQ</span>
-              <span class="em-lesson-time">3:50</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B3</span>
-              <span>Tạo & xác thực tài khoản Taobao / 1688</span>
-              <span class="em-lesson-time">2:03</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B4</span>
-              <span>Hướng dẫn xác thực Alipay chuẩn — thanh toán an toàn</span>
-              <span class="em-lesson-time">3:09</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B5</span>
-              <span>Chọn line vận chuyển & đăng ký kho nhận hàng</span>
-              <span class="em-lesson-time">7:08</span>
-            </li>
+            <li><span class="em-lesson-num">B1</span><span>Nghề order — Xu hướng & cơ hội kiếm tiền</span><span class="em-lesson-time">2:36</span></li>
+            <li><span class="em-lesson-num">B2</span><span>Nắm vững 5 sàn TMĐT nhập hàng chính của TQ</span><span class="em-lesson-time">3:50</span></li>
+            <li><span class="em-lesson-num">B3</span><span>Tạo & xác thực tài khoản Taobao / 1688</span><span class="em-lesson-time">2:03</span></li>
+            <li><span class="em-lesson-num">B4</span><span>Hướng dẫn xác thực Alipay chuẩn – thanh toán an toàn</span><span class="em-lesson-time">3:09</span></li>
+            <li><span class="em-lesson-num">B5</span><span>Chọn line vận chuyển & đăng ký kho nhận hàng</span><span class="em-lesson-time">7:08</span></li>
           </ul>
         </div>
         <div class="em-buy-row">
           <small>✅ Làm được đơn đầu tiên ngay sau module này</small>
           <a href="#dang-ky" class="em-btn">Mua Module 1</a>
         </div>
-      </div>
+      </details>
 
       <!-- MODULE 2 -->
-      <div class="em-card">
-        <div class="em-header">
+      <details class="em-card">
+        <summary class="em-header">
           <div class="em-header-left">
             <div class="em-num">2</div>
             <h4>Vượt Chướng Ngại<br>Kỹ Năng Cơ Bản</h4>
           </div>
           <div class="em-price-tag">2.5tr</div>
-        </div>
+        </summary>
         <div class="em-body">
           <div class="em-meta"><span>6 bài học</span> · AI, nguồn ngách, tính giá lợi nhuận</div>
           <ul class="em-list">
-            <li>
-              <span class="em-lesson-num">B6</span>
-              <span>Phân biệt tiền hàng, phí nội địa, phí TQ–VN, thuế</span>
-              <span class="em-lesson-time">7:56</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B7</span>
-              <span>Thao tác 7 bước — từ tìm hàng đến xử lý sau bán</span>
-              <span class="em-lesson-time">9:43</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B8</span>
-              <span>Công thức dùng AI & công cụ tìm nguồn hàng ngách</span>
-              <span class="em-lesson-time">11:40</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B9</span>
-              <span>Dùng AI check shop đối thủ và giá sỉ/lẻ</span>
-              <span class="em-lesson-time">11:41</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B10</span>
-              <span>Checklist tiêu chí chọn xưởng uy tín</span>
-              <span class="em-lesson-time">12:35</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B11</span>
-              <span>File tự động tính giá vốn / lợi nhuận chính xác</span>
-              <span class="em-lesson-time">6:05</span>
-            </li>
+            <li><span class="em-lesson-num">B6</span><span>Phân biệt tiền hàng, phí nội địa, phí TQ–VN, thuế</span><span class="em-lesson-time">7:56</span></li>
+            <li><span class="em-lesson-num">B7</span><span>Thao tác 7 bước — từ tìm hàng đến xử lý sau bán</span><span class="em-lesson-time">9:43</span></li>
+            <li><span class="em-lesson-num">B8</span><span>Công thức dùng AI & công cụ tìm nguồn hàng ngách</span><span class="em-lesson-time">11:40</span></li>
+            <li><span class="em-lesson-num">B9</span><span>Dùng AI check shop đối thủ và giá sỉ/lẻ</span><span class="em-lesson-time">11:41</span></li>
+            <li><span class="em-lesson-num">B10</span><span>Checklist tiêu chí chọn xưởng uy tín</span><span class="em-lesson-time">12:35</span></li>
+            <li><span class="em-lesson-num">B11</span><span>File tự động tính giá vốn / lợi nhuận chính xác</span><span class="em-lesson-time">6:05</span></li>
           </ul>
         </div>
         <div class="em-buy-row">
           <small>🧮 Có ngay file tính giá về tay tự động</small>
           <a href="#dang-ky" class="em-btn">Mua Module 2</a>
         </div>
-      </div>
+      </details>
 
       <!-- MODULE 3 -->
-      <div class="em-card">
-        <div class="em-header">
+      <details class="em-card">
+        <summary class="em-header">
           <div class="em-header-left">
             <div class="em-num">3</div>
             <h4>Tăng Tốc<br>Săn Sale, Đàm Phán & OEM</h4>
           </div>
           <div class="em-price-tag">2.5tr</div>
-        </div>
+        </summary>
         <div class="em-body">
           <div class="em-meta"><span>6 bài học</span> · Đàm phán, OEM, Hero Product</div>
           <ul class="em-list">
-            <li>
-              <span class="em-lesson-num">B12</span>
-              <span>Kỹ thuật săn sale theo giờ và livestream Taobao</span>
-              <span class="em-lesson-time">35:00</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B13</span>
-              <span>Kịch bản đàm phán giảm giá & freeship với xưởng</span>
-              <span class="em-lesson-time">7:23</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B14</span>
-              <span>Quy trình hoàn tiền & xử lý hàng thất lạc</span>
-              <span class="em-lesson-time">11:21</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B15</span>
-              <span>Quy trình tư duy tìm sản phẩm WIN kinh doanh hiệu quả</span>
-              <span class="em-lesson-time">9:37</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B16</span>
-              <span>Tìm ý tưởng trend từ Douyin & Xiaohongshu</span>
-              <span class="em-lesson-time">3:30</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B17</span>
-              <span>Tư duy OEM — làm thương hiệu riêng từ xưởng TQ</span>
-              <span class="em-lesson-time">9:47</span>
-            </li>
+            <li><span class="em-lesson-num">B12</span><span>Kỹ thuật săn sale theo giờ và livestream Taobao</span><span class="em-lesson-time">35:00</span></li>
+            <li><span class="em-lesson-num">B13</span><span>Kịch bản đàm phán giảm giá & freeship với xưởng</span><span class="em-lesson-time">7:23</span></li>
+            <li><span class="em-lesson-num">B14</span><span>Quy trình hoàn tiền & xử lý hàng thất lạc</span><span class="em-lesson-time">11:21</span></li>
+            <li><span class="em-lesson-num">B15</span><span>Quy trình tư duy tìm sản phẩm WIN kinh doanh hiệu quả</span><span class="em-lesson-time">9:37</span></li>
+            <li><span class="em-lesson-num">B16</span><span>Tìm ý tưởng trend từ Douyin & Xiaohongshu</span><span class="em-lesson-time">3:30</span></li>
+            <li><span class="em-lesson-num">B17</span><span>Tư duy OEM — làm thương hiệu riêng từ xưởng TQ</span><span class="em-lesson-time">9:47</span></li>
           </ul>
         </div>
         <div class="em-buy-row">
           <small>💡 Bí quyết x2–x5 lợi nhuận với Hero Product</small>
           <a href="#dang-ky" class="em-btn">Mua Module 3</a>
         </div>
-      </div>
+      </details>
 
       <!-- MODULE 4 -->
-      <div class="em-card">
-        <div class="em-header">
+      <details class="em-card">
+        <summary class="em-header">
           <div class="em-header-left">
             <div class="em-num">4</div>
             <h4>Về Đích<br>Thực Chiến & Lộ Trình</h4>
           </div>
           <div class="em-price-tag">500k</div>
-        </div>
+        </summary>
         <div class="em-body">
           <div class="em-meta"><span>4 bài học</span> · Thực hành đặt đơn thật & sơ đồ phát triển</div>
           <ul class="em-list">
-            <li>
-              <span class="em-lesson-num">B18</span>
-              <span>Thực hành đặt đơn hàng thật dưới 100k</span>
-              <span class="em-lesson-time">2:44</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B19</span>
-              <span>Tracking hành trình vận đơn trên App</span>
-              <span class="em-lesson-time">2:27</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B20</span>
-              <span>Checklist xử lý sự cố đơn hàng thường gặp</span>
-              <span class="em-lesson-time">5:22</span>
-            </li>
-            <li>
-              <span class="em-lesson-num">B21</span>
-              <span>Sơ đồ phát triển: Học viên → Chủ dịch vụ → OEM</span>
-              <span class="em-lesson-time">3:45</span>
-            </li>
+            <li><span class="em-lesson-num">B18</span><span>Thực hành đặt đơn hàng thật dưới 100k</span><span class="em-lesson-time">2:44</span></li>
+            <li><span class="em-lesson-num">B19</span><span>Tracking hành trình vận đơn trên App</span><span class="em-lesson-time">2:27</span></li>
+            <li><span class="em-lesson-num">B20</span><span>Checklist xử lý sự cố đơn hàng thường gặp</span><span class="em-lesson-time">5:22</span></li>
+            <li><span class="em-lesson-num">B21</span><span>Sơ đồ phát triển: Học viên → Chủ dịch vụ → OEM</span><span class="em-lesson-time">3:45</span></li>
           </ul>
         </div>
         <div class="em-buy-row">
           <small>🗺️ Lộ trình rõ ràng từ học viên đến chủ dịch vụ</small>
           <a href="#dang-ky" class="em-btn">Mua Module 4</a>
         </div>
-      </div>
+      </details>
 
     </div>
 
@@ -1723,34 +1964,75 @@
     <div class="section-tag">Học phí khoá học</div>
     <h2 class="section-title">Chọn Hình Thức<br><span class="red">Phù Hợp Với Bạn</span></h2>
     <p class="section-desc" style="margin: 0 auto 0;">Dù E-learning, Online hay Offline — bạn đều được học cùng cô giáo Ngọc Tịnh và được mentor trọn đời.</p>
-    <div class="pricing-grid" style="max-width:800px;">
-      <div class="price-card">
-        <div class="price-type">E-Learning · Video Sẵn</div>
-        <div class="price-amount">4 tr</div>
-        <div class="price-unit">đồng · Học mọi lúc, mọi nơi</div>
+    <div class="pricing-grid">
+      <!-- 1. Card 1 -->
+      <div class="price-card" style="border: 2px dashed #f1d5a2; background: #fffcf5; position:relative;">
+        <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#f1d5a2; color:#fff; font-size:10px; font-weight:900; padding:4px 12px; border-radius:20px; white-space:nowrap; z-index:2;">DÀNH CHO NGƯỜI MỚI</div>
+        <div class="price-type">ĐỊNH HƯỚNG NGHỀ ORDER</div>
+        <div class="price-subtitle">(Học thử miễn phí)</div>
+        <div class="price-amount">0Đ</div>
         <ul class="price-features">
-          <li>21 bài học chia 4 Module rõ ràng</li>
-          <li>Tặng kèm khoá Tiếng Trung cơ bản</li>
-          <li>File mẫu, checklist, tài liệu trị giá 3tr+</li>
-          <li>Cộng đồng 39.000 thành viên</li>
-          <li>Mentor hỗ trợ 1:1 trong 3 năm</li>
+          <li>Hiểu tổng quan về "Nghề Order"</li>
+          <li>Phân tích tiềm năng 5 sàn TQ</li>
+          <li>Lộ trình học thực chiến tối ưu</li>
         </ul>
-        <a href="#elearning" class="btn-price outline">Xem Chi Tiết Module</a>
+        <a href="#dang-ky" class="btn-price" style="background:#f1d5a2; border-color:#f1d5a2;">Đăng Ký Ngay</a>
       </div>
+
+      <!-- 2. Card 2 -->
+      <div class="price-card">
+        <div class="price-type">THỰC HÀNH MUA HÀNG</div>
+        <div class="price-subtitle">(Video sẵn & 1 buổi zoom)</div>
+        <div class="price-amount">199K</div>
+        <ul class="price-features">
+          <li>Học cách tự mua hàng thực tế</li>
+          <li>Nhận ngay kho video hướng dẫn</li>
+          <li>Tham gia 1 buổi Zoom hỗ trợ</li>
+        </ul>
+        <a href="#dang-ky" class="btn-price outline">Đăng Ký Ngay</a>
+      </div>
+
+      <!-- 3. Card 3 -->
+      <div class="price-card">
+        <div class="price-type">NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN</div>
+        <div class="price-subtitle">(Elearning - Video sẳn)</div>
+        <div class="price-amount">4TR</div>
+        <ul class="price-features">
+          <li>21 bài học chia 4 Module</li>
+          <li>Khoá Tiếng Trung cơ bản</li>
+          <li>Tài liệu, Checklist giá 3tr+</li>
+          <li>Mentor hỗ trợ 3 năm</li>
+        </ul>
+        <a href="#elearning" class="btn-price outline">Đăng Ký Ngay</a>
+      </div>
+
+      <!-- 4. Chuyên Sâu Card -->
       <div class="price-card featured">
         <div class="price-badge-top">🔥 Phổ biến nhất</div>
-        <div class="price-type">Chuyên Sâu Nghề Order</div>
-        <div class="price-amount">6 tr</div>
-        <div class="price-unit">đồng · Online + Offline tại Đà Nẵng</div>
+        <div class="price-type">CHUYÊN SÂU NGHỀ ORDER</div>
+        <div class="price-subtitle">(Online)</div>
+        <div class="price-amount">6TR</div>
         <ul class="price-features">
-          <li>4 chặng học trực tiếp hoặc online Zoom</li>
-          <li>Thực hành cầm tay chỉ việc trên 5 sàn TQ</li>
-          <li>Đặt đơn thật ngay trong lớp học</li>
-          <li>Tất cả quyền lợi như gói E-learning</li>
-          <li>Ưu tiên mentor 1:1 cá nhân hoá</li>
-          <li>15–20 học viên/lớp — học nhóm nhỏ</li>
+          <li>4 chặng học trực tiếp</li>
+          <li>Thực hành trên 5 sàn TQ</li>
+          <li>Quyền lợi gói E-learning</li>
+          <li>Mentor 1:1 cá nhân hoá</li>
         </ul>
         <a href="#dang-ky" class="btn-price">Đăng Ký Ngay</a>
+      </div>
+
+      <!-- 5. Offline Card -->
+      <div class="price-card">
+        <div class="price-type">CHUYÊN SÂU NGHỀ ORDER</div>
+        <div class="price-subtitle">(Offline)</div>
+        <div class="price-amount">8TR</div>
+        <ul class="price-features">
+          <li>Học trực tiếp cùng cô Tịnh</li>
+          <li>Cầm tay chỉ việc tại VP</li>
+          <li>Nguồn hàng xưởng giá gốc</li>
+          <li>Hỗ trợ trọn đời - Ưu tiên</li>
+        </ul>
+        <a href="#dang-ky" class="btn-price outline">Đăng Ký Ngay</a>
       </div>
     </div>
   </div>
@@ -1771,9 +2053,12 @@
   </div>
 </section>
 
+
+<!-- REGISTER SECTION -->
+
 <!-- REGISTER SECTION -->
 <section class="register-section" id="dang-ky">
-  <h2>Đăng Ký Ngay Hôm Nay<br><span>Trước Khi Hết Suất!</span></h2>
+  <h2>Đăng Ký Ngay Hôm Nay <span>Trước Khi Hết Suất!</span></h2>
   <p>Chỉ 15–20 học viên mỗi lớp — để đảm bảo chất lượng mentor. Điền form bên dưới để được tư vấn và giữ chỗ.</p>
   <div class="register-form" id="form-register">
     <div style="text-align:center; margin-bottom:20px;">
@@ -1791,6 +2076,17 @@
     <div class="form-row">
       <label for="reg-city">Tỉnh / Thành phố</label>
       <input type="text" id="reg-city" placeholder="Đà Nẵng">
+    </div>
+    <div class="form-row">
+      <label for="reg-course">Hình thức học mong muốn</label>
+      <select id="reg-course">
+        <option value="">-- Chọn hình thức học --</option>
+        <option value="Dinh huong 0D">ĐỊNH HƯỚNG NGHỀ ORDER (Học thử 0Đ)</option>
+        <option value="Workshop 199K">THỰC HÀNH MUA HÀNG (Workshop 199K)</option>
+        <option value="Elearning 4TR">NHẬP HÀNG THỰC CHIẾN (E-learning 4TR)</option>
+        <option value="Online 6TR">CHUYÊN SÂU NGHỀ ORDER (Online 6TR)</option>
+        <option value="Offline 8TR">CHUYÊN SÂU NGHỀ ORDER (Offline 8TR)</option>
+      </select>
     </div>
     <div class="form-row">
       <label for="reg-goal">Mục tiêu của bạn khi học khoá này?</label>
@@ -1823,35 +2119,30 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="logo-area">
-        <img class="logo-img" src="images/logo.png" alt="An An Hoa Ngữ — 2An Agency" style="height:56px; filter: brightness(0) invert(1);">
+      <div class="logo-area" style="display:flex; justify-content:center;">
+        <img class="logo-img" src="images/logo.png" alt="An An Hoa Ngữ" style="height:48px; filter: brightness(0) invert(1);">
       </div>
-      <p style="margin-top:14px;">Công ty TNHH An An Hoa Ngữ<br>MST: 0402167094<br>Đơn vị đào tạo nhập hàng Trung Quốc hàng đầu miền Trung.</p>
-      <div class="social-links" style="margin-top:16px;">
+      <p style="margin-top:16px; font-weight:500;">Công ty TNHH An An Hoa Ngữ</p>
+      <p style="font-size:12px; opacity:0.7; margin-top:4px;">MST: 0402167094 | Đơn vị đào tạo nghề Order hàng đầu.</p>
+      <div class="social-links" style="margin-top:20px; justify-content:center;">
         <a href="https://www.facebook.com/ananhoangu" class="social-btn" target="_blank">Facebook</a>
         <a href="https://www.tiktok.com/@ananhoangu" class="social-btn" target="_blank">TikTok</a>
         <a href="https://hocnhaphangtrungquoc.com" class="social-btn" target="_blank">Website</a>
       </div>
     </div>
-    <div class="footer-col">
-      <h5>Liên hệ</h5>
+    
+    <div class="footer-col" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top:25px; margin-top:10px;">
+      <h5>LIÊN HỆ CHÚNG TÔI</h5>
       <p>📍 49 Phần Lăng 2, Thanh Khê, Đà Nẵng</p>
-      <a href="tel:0974818534">📞 SĐT: 0974 818 534</a>
-      <a href="tel:0935357312">📞 Hotline: 0935 357 312</a>
-      <a href="mailto:ananhoangu@gmail.com">✉️ ananhoangu@gmail.com</a>
-    </div>
-    <div class="footer-col">
-      <h5>Khoá học</h5>
-      <a href="#">Nhập Hàng TQ Thực Chiến (Online)</a>
-      <a href="#">Nhập Hàng TQ Thực Chiến (Offline)</a>
-      <a href="#">Kinh Doanh Order từ A–Z</a>
-      <a href="#">Tiếng Trung cho dân order</a>
-      <a href="https://hocnhaphangtrungquoc.com">Học thêm tại website</a>
+      <div class="contact-links" style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+        <a href="tel:0974818534" style="margin:0;">📞 SĐT: 0974 818 534</a>
+        <a href="tel:0935357312" style="margin:0;">📞 Hotline: 0935 357 312</a>
+        <a href="mailto:ananhoangu@gmail.com" style="margin:0;">✉️ ananhoangu@gmail.com</a>
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2024 Cty TNHH An An Hoa Ngữ · MST: 0402167094</span>
-    <span>Designed with ❤️ for học viên An An</span>
+  <div class="footer-bottom" style="margin-top:30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top:15px; font-size:11px; opacity:0.6; text-align:center;">
+    <span>© 2024 Cty TNHH An An Hoa Ngữ · Designed with ❤️</span>
   </div>
 </footer>
 
@@ -1955,6 +2246,50 @@
     var old = input.parentNode.querySelector('.error-msg');
     if (old) old.remove();
   }
+</script>
+
+<!-- FLOATING NOTIFICATION SCRIPT -->
+<div id="floating-toast">
+  <div style="background: var(--red-light); width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px;">🎁</div>
+  <div style="font-size:12px; line-height:1.4;">
+    <strong id="toast-name">Chị Lan (Hà Nội)</strong> vừa đăng ký thành công khóa học!
+    <div style="font-size:10px; color:var(--text-muted);">vừa xong</div>
+  </div>
+</div>
+
+<script>
+  // Countdown Logic
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      display.textContent = minutes + ":" + seconds;
+      if (--timer < 0) timer = duration;
+    }, 1000);
+  }
+  
+  // Floating Toast Logic
+  const namesList = ["Anh Tuấn (Đà Nẵng)", "Chị Huệ (HCM)", "Minh Trần (Hải Phòng)", "Thu Thảo (Bình Dương)", "Hoàng Nam (Cần Thơ)"];
+  function showToast() {
+    const toast = document.getElementById('floating-toast');
+    const nameEl = document.getElementById('toast-name');
+    if(toast && nameEl) {
+      nameEl.textContent = namesList[Math.floor(Math.random() * namesList.length)];
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+  }
+
+  window.onload = function () {
+    const timerDisplay = document.querySelector('#countdown-timer');
+    if(timerDisplay) startTimer(60 * 5, timerDisplay);
+    
+    setInterval(showToast, 12000);
+    setTimeout(showToast, 3000);
+  };
 
   function submitForm(formType) {
     var name, phone, city, goal, type, btn;
@@ -1966,6 +2301,13 @@
       goal  = null;
       type  = document.getElementById('hero-type');
       btn   = document.getElementById('hero-btn');
+    } else if (formType === 'trial') {
+      name  = document.getElementById('trial-name');
+      phone = document.getElementById('trial-phone');
+      city  = document.getElementById('trial-city');
+      goal  = null;
+      type  = null;
+      btn   = document.getElementById('trial-btn');
     } else {
       name  = document.getElementById('reg-name');
       phone = document.getElementById('reg-phone');
@@ -1997,7 +2339,9 @@
     // — Build data —
     var now = new Date();
     var timestamp = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN');
-    var source = formType === 'hero' ? 'Form Hero (đầu trang)' : 'Form Đăng Ký (cuối trang)';
+    var source = 'Form Đăng Ký (cuối trang)';
+    if (formType === 'hero') source = 'Form Hero (đầu trang)';
+    if (formType === 'trial') source = 'Form Học Thử Miễn Phí';
     var utmParams = new URLSearchParams(window.location.search);
 
     var payload = {
@@ -2047,16 +2391,20 @@
       if (city)  city.value  = '';
       if (goal)  goal.value  = '';
       if (type)  type.value  = '';
-      btn.innerHTML = btn.id === 'hero-btn'
-        ? '🚀 Nhận Tư Vấn Ngay — Miễn Phí 100%'
-        : '🎯 Đăng Ký Nhận Tư Vấn Ngay';
+      if (btn.id === 'hero-btn') {
+        btn.innerHTML = '🚀 Nhận Tư Vấn Ngay — Miễn Phí 100%';
+      } else if (btn.id === 'trial-btn') {
+        btn.innerHTML = '🔥 Đăng Ký Giữ Chỗ Miễn Phí';
+      } else {
+        btn.innerHTML = '🎯 Đăng Ký Nhận Tư Vấn Ngay';
+      }
       btn.style.background = '';
       btn.classList.remove('loading');
     }, 3000);
   }
 
   // — Auto-add real-time error clearing —
-  ['hero-name','hero-phone','reg-name','reg-phone'].forEach(function(id) {
+  ['hero-name','hero-phone','reg-name','reg-phone','trial-name','trial-phone'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.addEventListener('input', function() { clearError(this); });
   });
