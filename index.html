@@ -97,6 +97,15 @@
       box-shadow: 0 2px 10px rgba(191,36,54,0.05);
     }
     .header-timer span { color: var(--red); }
+    /* HÌNH 2: Timer text on 1 line */
+    .header-timer-text {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .header-timer-text div { display: inline !important; }
     .pulse-dot-red {
       width: 8px; height: 8px;
       background: var(--red);
@@ -182,16 +191,18 @@
       margin-bottom: 24px;
     }
 
+    /* HÌNH 3: Registration heading - white on desktop */
     .guarantee-content-left h2 {
       font-size: 42px;
       font-weight: 900;
       line-height: 1.2;
       margin-bottom: 24px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      color: #ffffff;
     }
     
     .guarantee-content-left h2 span {
-        color: var(--gold);
+      color: #ffffff;
     }
 
     .guarantee-content-left p {
@@ -1355,16 +1366,17 @@
     }
 
     .faq-q {
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--white);
-      padding: 24px 26px;
+      padding: 20px 22px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       list-style: none;
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      gap: 10px;
     }
 
     .faq-q::-webkit-details-marker {
@@ -1379,6 +1391,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .faq-q-text::before {
