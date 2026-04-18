@@ -2162,6 +2162,9 @@
     /* ===== RESPONSIVE ===== */
     /* ===== UNIFIED MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
+      /* HÌNH 2 (mới): Hero background - disable fixed attachment on mobile (iOS doesn't support it) */
+      .hero { background-attachment: scroll !important; }
+      
       /* HÌNH 5: Header timer - 1 row centered with content */
       header { padding: 8px 12px !important; flex-wrap: nowrap; justify-content: space-between; gap: 6px; }
       .logo-img { height: 32px; }
@@ -2281,28 +2284,29 @@
       .register-form-v2 > div:first-child { text-align: left !important; }
       .register-form-v2 > div:first-child strong { display: block !important; text-align: left !important; }
       .register-form-v2 > div:first-child p { text-align: left !important; }
-      .register-form-v2 .btn-submit { display: block !important; width: 100% !important; }
-      
-      /* HìNH 3 (mới): Social links - 1 hàng ngang, không xuống dòng */
+        /* HÌNH 1 (mới): Social links - 1 hàng ngang, không xuống dòng, website chính thức 1 dòng */
       .social-grid { 
         flex-direction: row !important; 
         flex-wrap: nowrap !important; 
         justify-content: flex-start !important; 
-        gap: 8px !important; 
+        gap: 6px !important; 
         overflow-x: auto !important;
       }
       .social-link-card { 
-        flex: 0 0 auto !important; 
-        min-width: 80px !important; 
-        max-width: 110px !important;
-        padding: 8px 10px !important; 
-        font-size: 11px !important;
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        padding: 8px 6px !important; 
+        font-size: 10px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
         text-align: center !important; 
         justify-content: center !important; 
         flex-direction: column !important; 
         gap: 3px !important; 
       }
-      .social-link-card span { font-size: 16px !important; }
+      .social-link-card span { font-size: 16px !important; display: block !important; }
     }
 
     /* Trial section base styles */
