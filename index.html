@@ -1684,90 +1684,128 @@
     footer {
       background: #0d0204;
       color: rgba(255, 255, 255, 0.75);
-      padding: 50px 40px 30px;
+      padding: 80px 40px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .footer-inner {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
     }
 
-    .footer-brand .logo-text strong {
-      color: var(--gold);
-    }
-
-    .footer-brand .logo-text small {
-      color: rgba(255, 255, 255, 0.5);
+    .footer-brand .logo-area {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 24px;
     }
 
     .footer-brand p {
-      font-size: 13px;
-      margin-top: 14px;
+      font-size: 14px;
       line-height: 1.8;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 8px;
     }
 
     .footer-col h5 {
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
       color: var(--gold);
-      margin-bottom: 14px;
-      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
+      position: relative;
     }
 
-    .footer-col a,
-    .footer-col p {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.65);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 8px;
-      transition: color 0.2s;
+    .footer-col h5::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--red);
     }
 
-    .footer-col a:hover {
-      color: var(--gold);
-    }
-
-    .footer-bottom {
-      max-width: 1000px;
-      margin: 0 auto;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 20px;
-      font-size: 12px;
+    .footer-links-list {
+      list-style: none;
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links-list a {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
       gap: 8px;
     }
 
-    /* ===== SOCIAL LINKS ===== */
-    .social-links {
+    .footer-links-list a:hover {
+      color: var(--gold);
+      transform: translateX(5px);
+    }
+
+    .footer-contact-item {
       display: flex;
-      gap: 10px;
-      margin-top: 16px;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
-    .social-btn {
-      display: inline-flex;
+    .footer-contact-item span {
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 30px;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.75);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: rgba(255, 255, 255, 0.4);
     }
 
-    .social-btn:hover {
+    /* ===== SOCIAL LINKS REDESIGN ===== */
+    .social-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .social-link-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .social-link-card:hover {
+      background: rgba(249, 223, 172, 0.1);
       border-color: var(--gold);
       color: var(--gold);
+      transform: translateY(-2px);
     }
 
     /* ===== TESTIMONIALS ===== */
@@ -2105,10 +2143,12 @@
     /* ===== RESPONSIVE ===== */
     /* ===== UNIFIED MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
-      header { padding: 12px 16px !important; flex-wrap: wrap; justify-content: center; gap: 8px; }
-      .logo-img { height: 44px; }
-      .header-cta { padding: 8px 16px; font-size: 13px; white-space: nowrap !important; margin: 5px 0; }
-      .topbar { font-size: 13px; padding: 10px 16px; }
+      header { padding: 8px 12px !important; flex-wrap: nowrap; justify-content: space-between; gap: 6px; }
+      .logo-img { height: 32px; }
+      .header-timer { padding: 4px 12px; gap: 6px; }
+      .header-timer-text div { display: inline-block; font-size: 11px !important; margin: 0 !important; }
+      .header-timer-text div:first-child { margin-right: 4px !important; }
+      .header-cta { padding: 6px 12px; font-size: 11px; white-space: nowrap !important; margin: 0; }
       
       body { font-size: 14px; }
       section { padding: 40px 16px !important; overflow-x: hidden !important; }
@@ -2138,6 +2178,10 @@
       .mentor-title-new { font-size: 13px !important; margin-bottom: 15px !important; }
       .mentor-credentials-styled { gap: 8px !important; margin-bottom: 20px !important; }
       .mentor-credentials-styled li { padding: 12px 15px !important; font-size: 12.5px !important; }
+      
+      .social-grid { flex-direction: row !important; flex-wrap: wrap; justify-content: center; gap: 10px !important; }
+      .social-link-card { padding: 8px 12px !important; font-size: 12px !important; flex: 1; min-width: 80px; text-align: center; justify-content: center; flex-direction: column; gap: 4px !important; }
+      .social-link-card span { font-size: 18px !important; }
 
       .solution-grid { grid-template-columns: 1fr !important; gap: 20px; display: grid !important; }
       .solution-card { padding: 25px 20px !important; border-radius: 20px !important; }
@@ -2531,10 +2575,10 @@
   </section>
 
   <!-- FAQ -->
-  <section class="faq-section">
-    <div class="section-inner">
-      <div class="section-tag">Giải đáp thắc mắc</div>
-      <h2 class="section-title">Câu Hỏi Thường Gặp<br><span class="red">Của Học Viên Mới</span></h2>
+  <section class="faq-section" style="text-align: center !important;">
+    <div class="section-inner" style="display: block !important; margin: 0 auto !important; text-align: center !important;">
+      <div class="section-tag" style="display: inline-block !important; margin: 0 auto 12px !important;">Giải đáp thắc mắc</div>
+      <h2 class="section-title" style="display: block !important; text-align: center !important; margin: 0 auto 14px !important;">Câu Hỏi Thường Gặp<br><span class="red" style="display: block !important; margin: 0 auto !important; text-align: center !important;">Của Học Viên Mới</span></h2>
       <div class="faq-grid">
         <details class="faq-item" open>
           <summary class="faq-q">
@@ -2765,7 +2809,10 @@
     <div class="guarantee-container-v3">
       <!-- LEFT: CONTENT -->
       <div class="guarantee-content-left">
-        <h2>Đăng Ký Ngay Hôm Nay <span>Trước Khi Hết Suất!</span></h2>
+        <h2 style="display: block !important; text-align: left !important; line-height: 1.2;">
+          <span style="display: block !important;">Đăng Ký Ngay Hôm Nay</span>
+          <span style="display: block !important; color: var(--gold) !important;">Trước Khi Hết Suất!</span>
+        </h2>
         <div class="guarantee-tag-v2">Cam kết từ An An Hoa Ngữ</div>
         <p>Sau khi hoàn thành khoá học, bạn vẫn được đồng hành trong 3 năm — từ câu hỏi nhỏ nhất đến xử lý đơn khó nhất. Chỉ 15–20 học viên mỗi lớp để đảm bảo chất lượng mentor tốt nhất.</p>
       </div>
@@ -2816,31 +2863,57 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
+      <!-- Cột 1: Thương hiệu -->
       <div class="footer-brand">
-        <div class="logo-area" style="display:flex; justify-content:center;">
-          <img class="logo-img" src="images/logo.png" alt="An An Hoa Ngữ" style="height:48px; filter: brightness(0) invert(1);">
+        <div class="logo-area">
+          <img class="logo-img" src="images/logo.png" alt="An An Hoa Ngữ" style="height:54px; filter: brightness(0) invert(1);">
         </div>
-        <p style="margin-top:16px; font-weight:500;">Công ty TNHH An An Hoa Ngữ</p>
-        <p style="font-size:12px; opacity:0.7; margin-top:4px;">MST: 0402167094 | Đơn vị đào tạo nghề Order hàng đầu.</p>
-        <div class="social-links" style="margin-top:20px; justify-content:center;">
-          <a href="https://www.facebook.com/ananhoangu" class="social-btn" target="_blank">Facebook</a>
-          <a href="https://www.tiktok.com/@ananhoangu" class="social-btn" target="_blank">TikTok</a>
-          <a href="https://hocnhaphangtrungquoc.com" class="social-btn" target="_blank">Website</a>
-        </div>
+        <p style="font-weight:700; font-size: 16px; color: #fff;">Công ty TNHH An An Hoa Ngữ</p>
+        <p>MST: 0402167094</p>
+        <p style="opacity: 0.7; font-size: 13px;">Đơn vị đào tạo nghề Order hàng đầu, giúp bạn làm chủ nguồn hàng tận xưởng Trung Quốc.</p>
       </div>
       
-      <div class="footer-col" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top:25px; margin-top:10px;">
-        <h5>LIÊN HỆ CHÚNG TÔI</h5>
-        <p>📍 49 Phần Lăng 2, Thanh Khê, Đà Nẵng</p>
-        <div class="contact-links" style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
-          <a href="tel:0974818534" style="margin:0;">📞 SĐT: 0974 818 534</a>
-          <a href="tel:0935357312" style="margin:0;">📞 Hotline: 0935 357 312</a>
-          <a href="mailto:ananhoangu@gmail.com" style="margin:0;">✉️ ananhoangu@gmail.com</a>
+      <!-- Cột 2: Cộng đồng -->
+      <div class="footer-col">
+        <h5>CỘNG ĐỒNG</h5>
+        <div class="social-grid">
+          <a href="https://www.facebook.com/ananhoangu" class="social-link-card" target="_blank">
+            <span>🔵</span> Facebook
+          </a>
+          <a href="https://www.tiktok.com/@ananhoangu" class="social-link-card" target="_blank">
+            <span>⚫</span> TikTok
+          </a>
+          <a href="https://hocnhaphangtrungquoc.com" class="social-link-card" target="_blank">
+            <span>🌐</span> Website Chính Thức
+          </a>
+        </div>
+      </div>
+
+      <!-- Cột 3: Liên hệ -->
+      <div class="footer-col">
+        <h5>LIÊN HỆ</h5>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <p>49 Phần Lăng 2, P. Hòa Khê, Thanh Khê, Đà Nẵng</p>
+        </div>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="tel:0974818534" style="color: inherit; text-decoration: none;">SĐT: 0974 818 534</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>🔥</span>
+          <a href="tel:0935357312" style="color: inherit; text-decoration: none;">Hotline: 0935 357 312</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>✉️</span>
+          <a href="mailto:ananhoangu@gmail.com" style="color: inherit; text-decoration: none;">ananhoangu@gmail.com</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom" style="margin-top:30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top:15px; font-size:11px; opacity:0.6; text-align:center;">
-      <span>© 2024 Cty TNHH An An Hoa Ngữ · Designed with ❤️</span>
+
+    <div class="footer-bottom">
+      <span>© 2024 Cty TNHH An An Hoa Ngữ · All Rights Reserved</span>
+      <span>Designed with ❤️ by 2An Agency</span>
     </div>
   </footer>
 
