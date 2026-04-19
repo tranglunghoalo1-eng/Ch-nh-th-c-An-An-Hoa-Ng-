@@ -2214,6 +2214,56 @@
     .cta-short { display: none; }
     .cta-full { display: inline; }
 
+    /* ===== MOSAIC GALLERIES ===== */
+    .mosaic-gallery-3 {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      height: 420px;
+    }
+    .mosaic-gallery-3-item {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .mosaic-gallery-3-main {
+      grid-row: 1 / 3;
+    }
+    .mosaic-gallery-3 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mosaic-gallery-4 {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: 240px 200px;
+      gap: 10px;
+    }
+    .mosaic-gallery-4-item {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .mosaic-gallery-4-main {
+      grid-row: 1 / 3;
+    }
+    .mosaic-gallery-4-sub {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mosaic-gallery-4 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
     /* ===== RESPONSIVE ===== */
     /* ===== UNIFIED MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
@@ -2255,14 +2305,13 @@
       .stat-num { font-size: 18px !important; }
       .stat-label { font-size: 9px !important; }
 
-      .lead-form-hero { padding: 25px 16px !important; width: 100% !important; margin: 20px auto 0 !important; box-sizing: border-box !important; border-radius: 20px !important; }
-      .lead-form-hero h3 { font-size: 19px !important; line-height: 1.3; }
-      
-      .faq-item, .pain-card, .solution-card, .module-card, .em-card, .mentor-credentials-styled li, .classroom-inner, .register-form-v2 { 
+      .faq-item, .pain-card, .solution-card, .module-card, .em-card, .mentor-credentials-styled li, .classroom-inner, .register-form-v2, .lead-form-hero { 
         margin: 0 auto 20px !important; 
         width: calc(100% - 0px) !important;
         max-width: 340px !important;
         box-sizing: border-box !important;
+        border-radius: 32px !important;
+        padding: 30px 20px !important;
       }
       
       /* HÌNH 3: FAQ content - left aligned */
@@ -2337,10 +2386,33 @@
       .lead-form-hero > div:first-child p { text-align: left !important; }
       .lead-form-hero .btn-submit { display: block !important; width: 100% !important; }
       
-      /* HìNH 2 (mới): Form đăng ký cuối trang - căn trái */
-      .register-form-v2 > div:first-child strong { display: block !important; text-align: left !important; white-space: nowrap !important; font-size: 17px !important; }
-      .register-form-v2 > div:first-child p { text-align: left !important; white-space: nowrap !important; font-size: 12px !important; }
-        /* HÌNH 1 (mới): Social links - 1 hàng ngang, không xuống dòng, website chính thức 1 dòng */
+      /* HìNH 2 (mới): Form đăng ký đầu và cuối trang - căn trái, đồng bộ */
+      .register-form-v2 > div:first-child strong,
+      .lead-form-hero > div:first-child strong { display: block !important; text-align: left !important; white-space: nowrap !important; font-size: 17px !important; }
+      .register-form-v2 > div:first-child p,
+      .lead-form-hero > div:first-child p { text-align: left !important; white-space: nowrap !important; font-size: 12px !important; }
+
+      /* MOSAIC GALLERIES STACKING (Force full image visibility) */
+      .mosaic-gallery-3, .mosaic-gallery-4, .mosaic-gallery-4-sub {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 12px !important;
+      }
+      .mosaic-gallery-3-item, .mosaic-gallery-4-item {
+        width: 100% !important;
+        height: auto !important;
+        grid-row: auto !important;
+        grid-column: auto !important;
+      }
+      .mosaic-gallery-3 img, .mosaic-gallery-4 img {
+        height: auto !important;
+        object-fit: contain !important;
+        width: 100% !important;
+        display: block !important;
+      }
+
+      /* HÌNH 1 (mới): Social links - 1 hàng ngang, không xuống dòng, website chính thức 1 dòng */
       .social-grid { 
         flex-direction: row !important; 
         flex-wrap: nowrap !important; 
@@ -2691,26 +2763,21 @@
       <p class="section-desc" style="margin-bottom: 25px; color: rgba(255,255,255,0.9); font-size: 13.5px !important; line-height: 1.6;">Mỗi lớp chỉ 15–20 học viên — cô giáo cầm tay chỉ việc từng người, đảm bảo ai cũng làm được đơn hàng thật ngay trong buổi học.</p>
 
       <!-- 3-photo layout: 1 large left + 2 stacked right -->
-      <div style="display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 420px;">
-
+      <div class="mosaic-gallery-3">
         <!-- Ảnh 1 - Lớn, chiếm cả 2 hàng bên trái -->
-        <div style="grid-row: 1 / 3; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <img src="images/teaching_class.png" alt="Lớp học nhập hàng Trung Quốc thực chiến"
-            style="width:100%; height:100%; object-fit:cover; display:block;">
+        <div class="mosaic-gallery-3-item mosaic-gallery-3-main">
+          <img src="images/teaching_class.png" alt="Lớp học nhập hàng Trung Quốc thực chiến">
         </div>
 
         <!-- Ảnh 2 - Trên, bên phải -->
-        <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <img src="images/2.PNG" alt="Lớp học thực chiến 2"
-            style="width:100%; height:100%; object-fit:cover; display:block;">
+        <div class="mosaic-gallery-3-item">
+          <img src="images/2.PNG" alt="Lớp học thực chiến 2">
         </div>
 
         <!-- Ảnh 3 - Dưới, bên phải -->
-        <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <img src="images/3.PNG" alt="Lớp học thực chiến 3"
-            style="width:100%; height:100%; object-fit:cover; display:block;">
+        <div class="mosaic-gallery-3-item">
+          <img src="images/3.PNG" alt="Lớp học thực chiến 3">
         </div>
-
       </div>
     </div>
   </section>
@@ -2987,36 +3054,30 @@
       </div>
 
       <!-- Mosaic layout: 1 large left + 3 right (1 wide top + 2 bottom) -->
-      <div style="display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 240px 200px; gap: 10px;">
-
+      <div class="mosaic-gallery-4">
         <!-- Ảnh 1 - Lớn, chiếm full chiều cao bên trái -->
-        <div style="grid-row: 1 / 3; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+        <div class="mosaic-gallery-4-item mosaic-gallery-4-main">
           <img src="images/lớp 1.jpg" alt="Lớp học nhập hàng Trung Quốc thực chiến"
-            style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
         </div>
 
         <!-- Ảnh 2 - Trên bên phải, full width -->
-        <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+        <div class="mosaic-gallery-4-item">
           <img src="images/lớp 2.jpg" alt="Lớp học thực chiến 2"
-            style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
         </div>
 
         <!-- Ảnh 3 và 4 - Hàng dưới bên phải chia đôi -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-          <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+        <div class="mosaic-gallery-4-sub">
+          <div class="mosaic-gallery-4-item">
             <img src="images/lớp 3.JPG" alt="Lớp học thực chiến 3"
-              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
               onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
           </div>
-          <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+          <div class="mosaic-gallery-4-item">
             <img src="images/lớp 4.JPG" alt="Lớp học thực chiến 4"
-              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
               onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
           </div>
         </div>
-
       </div>
     </div>
   </section>
