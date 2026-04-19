@@ -837,10 +837,11 @@
 
     .faq-a {
       padding: 0 26px 24px 62px;
-      font-size: 15.5px;
-      color: #ffffff;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
       line-height: 1.8;
-      font-weight: 500;
+      font-weight: 400;
+      text-align: left;
     }
 
     .faq-section .section-title { color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.15); }
@@ -871,6 +872,57 @@
       max-width: 800px;
       margin: 0 auto 50px;
       font-size: 16px;
+    }
+
+    .solution-header-flex {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      margin-bottom: 60px;
+      text-align: left;
+    }
+
+    .solution-header-text {
+      flex: 1.2;
+    }
+
+    .solution-header-text .section-title {
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .solution-header-text .section-desc {
+      margin: 0;
+      max-width: none;
+      text-align: left;
+    }
+
+    .solution-header-video {
+      flex: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      border: 5px solid rgba(255, 255, 255, 0.15);
+      line-height: 0;
+      background: #000;
+    }
+
+    .solution-header-video video {
+      width: 100%;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .solution-header-flex {
+        flex-direction: column;
+        text-align: center;
+        gap: 35px;
+        margin-bottom: 40px;
+      }
+      .solution-header-text .section-title,
+      .solution-header-text .section-desc {
+        text-align: center;
+      }
     }
 
     .solution-grid {
@@ -1389,11 +1441,14 @@
 
     .faq-q-text {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+      text-align: left;
+      line-height: 1.4;
+      flex: 1;
     }
 
     .faq-q-text::before {
@@ -2166,10 +2221,10 @@
       .hero { background-attachment: scroll !important; }
       
       /* HÌNH 5: Header timer - 1 row centered with content */
-      header { padding: 8px 12px !important; flex-wrap: nowrap; justify-content: space-between; gap: 6px; }
-      .logo-img { height: 32px; }
+      header { padding: 8px 12px !important; flex-wrap: wrap; justify-content: center; gap: 8px; }
+      .logo-img { height: 30px; }
       .header-timer {
-        padding: 5px 14px !important;
+        padding: 5px 12px !important;
         gap: 6px !important;
         flex-direction: row !important;
         align-items: center !important;
@@ -2181,21 +2236,21 @@
         flex-direction: row !important;
         align-items: center !important;
         gap: 5px !important;
-        white-space: nowrap !important;
+        white-space: normal !important;
       }
-      .header-timer-text div { display: inline !important; font-size: 11px !important; margin: 0 !important; }
-      .header-cta { padding: 6px 12px; font-size: 11px; white-space: nowrap !important; margin: 0; }
+      .header-timer-text div { display: inline !important; font-size: 10px !important; margin: 0 !important; }
+      .header-cta { padding: 6px 12px; font-size: 11px; white-space: normal !important; margin: 0; text-align: center; }
       
       body { font-size: 14px; }
-      section { padding: 40px 16px !important; overflow-x: hidden !important; }
+      section { padding: 40px 20px !important; overflow-x: hidden !important; }
       .section-inner { width: 100% !important; margin: 0 auto; padding: 0 !important; }
       
-      .section-title { font-size: 24px !important; line-height: 1.25 !important; word-wrap: break-word !important; padding: 0 !important; margin-bottom: 20px !important; }
-      .section-desc { font-size: 14px !important; margin-bottom: 25px !important; line-height: 1.7; padding: 0 !important; }
+      .section-title { font-size: 24px !important; line-height: 1.25 !important; overflow-wrap: break-word !important; word-break: break-word !important; padding: 0 !important; margin-bottom: 20px !important; }
+      .section-desc { font-size: 14px !important; margin-bottom: 25px !important; line-height: 1.7; padding: 0 !important; overflow-wrap: break-word !important; }
       
-      .hero { padding: 30px 16px 50px !important; text-align: center; }
-      .hero h1 { font-size: 24px !important; white-space: nowrap !important; line-height: 1.2; }
-      .hero-h2 { font-size: 16px !important; line-height: 1.3; margin-bottom: 20px; }
+      .hero { padding: 30px 20px 50px !important; text-align: center; }
+      .hero h1 { font-size: 24px !important; white-space: normal !important; line-height: 1.2; overflow-wrap: break-word !important; }
+      .hero-h2 { font-size: 16px !important; line-height: 1.3; margin-bottom: 22px; white-space: normal !important; }
       .hero-stats { grid-template-columns: repeat(4, 1fr) !important; gap: 5px; }
       .stat-num { font-size: 18px !important; }
       .stat-label { font-size: 9px !important; }
@@ -2203,10 +2258,10 @@
       .lead-form-hero { padding: 25px 16px !important; width: 100% !important; margin: 20px auto 0 !important; box-sizing: border-box !important; border-radius: 20px !important; }
       .lead-form-hero h3 { font-size: 19px !important; line-height: 1.3; }
       
-      .faq-item, .pain-card, .solution-card, .module-card, .em-card, .mentor-credentials-styled li, .classroom-inner { 
-        margin: 0 auto 15px !important; 
-        width: 90% !important;
-        max-width: 310px !important;
+      .faq-item, .pain-card, .solution-card, .module-card, .em-card, .mentor-credentials-styled li, .classroom-inner, .register-form-v2 { 
+        margin: 0 auto 20px !important; 
+        width: calc(100% - 0px) !important;
+        max-width: 340px !important;
         box-sizing: border-box !important;
       }
       
@@ -2248,6 +2303,8 @@
       .guarantee-content-left h2 span,
       .guarantee-content-left h2 > span {
         color: #ffffff !important;
+        white-space: nowrap !important;
+        font-size: 19px !important;
       }
       .guarantee-content-left h2 {
         color: #ffffff !important;
@@ -2257,7 +2314,7 @@
       .footer-inner { grid-template-columns: 1fr !important; gap: 20px; text-align: left !important; padding: 30px 16px !important; }
       .footer-col { align-items: flex-start !important; text-align: left !important; }
       .footer-col h5 { text-align: left !important; }
-      .footer-col a, .footer-col p { word-break: break-all; margin-bottom: 8px !important; line-height: 1.4 !important; text-align: left !important; }
+      .footer-col a, .footer-col p { word-break: normal !important; overflow-wrap: normal !important; margin-bottom: 8px !important; line-height: 1.4 !important; text-align: left !important; font-size: 13px !important; }
       .footer-contact-item { text-align: left !important; justify-content: flex-start !important; }
       .footer-brand { text-align: left !important; }
       .footer-brand p { text-align: left !important; }
@@ -2281,9 +2338,8 @@
       .lead-form-hero .btn-submit { display: block !important; width: 100% !important; }
       
       /* HìNH 2 (mới): Form đăng ký cuối trang - căn trái */
-      .register-form-v2 > div:first-child { text-align: left !important; }
-      .register-form-v2 > div:first-child strong { display: block !important; text-align: left !important; }
-      .register-form-v2 > div:first-child p { text-align: left !important; }
+      .register-form-v2 > div:first-child strong { display: block !important; text-align: left !important; white-space: nowrap !important; font-size: 17px !important; }
+      .register-form-v2 > div:first-child p { text-align: left !important; white-space: nowrap !important; font-size: 12px !important; }
         /* HÌNH 1 (mới): Social links - 1 hàng ngang, không xuống dòng, website chính thức 1 dòng */
       .social-grid { 
         flex-direction: row !important; 
@@ -2299,12 +2355,15 @@
         padding: 8px 6px !important; 
         font-size: 10px !important;
         white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        overflow: visible !important;
+        word-break: normal !important;
+        text-overflow: clip !important;
         text-align: center !important; 
         justify-content: center !important; 
         flex-direction: column !important; 
         gap: 3px !important; 
+        min-height: 60px !important;
+        font-size: 10px !important;
       }
       .social-link-card span { font-size: 16px !important; display: block !important; }
     }
@@ -2340,27 +2399,29 @@
 
   <script>
     // Simple Countdown Timer
-    function startTimer(duration, display) {
-      var timer = duration, minutes, seconds;
+    function startTimer(duration) {
+      var timer = duration;
       setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+        var minutes = parseInt(timer / 60, 10);
+        var seconds = parseInt(timer % 60, 10);
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds;
+        var timeStr = minutes + ":" + seconds;
 
-        // Sync secondary countdowns if any
+        // Update main display (if exists)
+        var mainDisplay = document.querySelector('#countdown-timer');
+        if (mainDisplay) mainDisplay.textContent = timeStr;
+
+        // Update all synced countdowns (including header timer)
         document.querySelectorAll('.countdown-sync').forEach(function (el) {
-          el.textContent = minutes + ":" + seconds;
+          el.textContent = timeStr;
         });
 
         if (--timer < 0) timer = duration;
       }, 1000);
     }
     window.onload = function () {
-      var fiveMinutes = 60 * 5,
-        display = document.querySelector('#countdown-timer');
-      if (display) startTimer(fiveMinutes, display);
+      startTimer(60 * 5); // Start 5-minute countdown immediately
     };
   </script>
 
@@ -2431,7 +2492,7 @@
 
           <div class="lead-form-hero shadow-premium" id="form-hero">
             <div style="text-align:center; margin-bottom:20px;">
-              <strong style="font-size:20px; color:var(--red);">📋 Đăng Ký Tư Vấn & Giữ Chỗ</strong>
+              <strong style="font-size:20px; color:var(--red);">🎁 NHẬN LỘ TRÌNH MIỄN PHÍ</strong>
               <p style="font-size:13px; color:var(--text-muted); margin-top:4px;">Suất ưu đãi có hạn cho 10 người nhanh
                 nhất</p>
             </div>
@@ -2452,11 +2513,11 @@
               <label for="hero-course">Hình thức học mong muốn</label>
               <select id="hero-course">
                 <option value="">-- Chọn hình thức học --</option>
-                <option value="Dinh huong 0D">ĐỊNH HƯỚNG NGHỀ ORDER (Học thử 0Đ)</option>
-                <option value="Workshop 199K">THỰC HÀNH MUA HÀNG (Workshop 199K)</option>
-                <option value="Elearning 4TR">NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN (E-learning 4TR)</option>
-                <option value="Online 6TR">CHUYÊN SÂU NGHỀ ORDER (Online 6TR)</option>
-                <option value="Offline 8TR">CHUYÊN SÂU NGHỀ ORDER (Offline 8TR)</option>
+                <option value="Dinh huong 0D">ĐỊNH HƯỚNG NGHỀ ORDER         —  0 Đồng</option>
+                <option value="Workshop 199K">THỰC HÀNH MUA HÀNG             —  199.000 VNĐ</option>
+                <option value="Elearning 4TR">NHẬP HÀNG THỰC CHIẾN (Online)  —  4.000.000 VNĐ</option>
+                <option value="Online 6TR">CHUYÊN SÂU NGHỀ ORDER (Online)  —  6.000.000 VNĐ</option>
+                <option value="Offline 8TR">CHUYÊN SÂU NGHỀ ORDER (Offline) —  8.000.000 VNĐ</option>
               </select>
             </div>
 
@@ -2512,10 +2573,23 @@
 
   <!-- SOLUTION -->
   <section class="solution-section">
-    <div class="section-inner" style="text-align: center;">
-      <div class="section-tag">Giải pháp dành cho bạn</div>
-      <h2 class="section-title">KHÓA HỌC CHUYÊN SÂU NGHỀ ORDER và<br>NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN</h2>
-      <p class="section-desc">Không học lý thuyết suông – mỗi buổi học là thao tác thật, đơn hàng thật, tiền thật.</p>
+    <div class="section-inner">
+      <div class="solution-header-flex">
+        <!-- LEFT: Text -->
+        <div class="solution-header-text">
+          <div class="section-tag">Giải pháp dành cho bạn</div>
+          <h2 class="section-title">KHÓA HỌC CHUYÊN SÂU NGHỀ ORDER và<br>NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN</h2>
+          <p class="section-desc">Không học lý thuyết suông – mỗi buổi học là thao tác thật, đơn hàng thật, tiền thật.</p>
+        </div>
+        
+        <!-- RIGHT: Video -->
+        <div class="solution-header-video">
+          <video controls>
+            <source src="images/PV học viên.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ phát video này.
+          </video>
+        </div>
+      </div>
 
       <div class="solution-grid">
         <div class="solution-card">
@@ -2586,12 +2660,13 @@
                 <div class="vt-item">
                   <div class="vt-year">2024 - 2025</div>
                   <div class="vt-content">
-                    Dẫn đầu xu hướng đào tạo "Nghề Order" thực chiến:
+                    Chính thức đưa "Nghề Order" vào trường học &amp; cộng đồng:
                     <ul>
-                      <li>Workshop tại Cao Đẳng FPT Polytechnic Hà Nội & Đà Nẵng.</li>
-                      <li>Ban Giám Khảo cuộc thi Logential chuyên ngành Logistics.</li>
-                      <li>Diễn giả chuyên đề "Ứng dụng AI doanh nghiệp" tại ĐH Đông Á.</li>
-                      <li>Đào tạo thành công hơn 300 chủ shop kinh doanh thành công.</li>
+                      <li>Workshop <em>"Từ newbie thành boss nhập hàng Trung Quốc"</em> tại Cao Đẳng FPT Polytechnic Hà Nội.</li>
+                      <li>Ban Giám Khảo cuộc thi Logential tại Cao Đẳng FPT Polytechnic Hà Nội.</li>
+                      <li>Diễn giả tại Đại Học Đông Á Đà Nẵng – chủ đề: <em>"Ứng Dụng AI tại doanh nghiệp"</em>.</li>
+                      <li>Diễn giả chương trình <em>"Tiếng Trung Mở Lối – Nghề nghiệp trong tầm tay"</em> tại Cao Đẳng FPT Poly Đà Nẵng.</li>
+                      <li>Đào tạo hơn 300 chủ shop order thành công nhập hàng về kinh doanh.</li>
                     </ul>
                   </div>
                 </div>
@@ -2611,17 +2686,35 @@
   <!-- CLASSROOM PROOF -->
   <section style="background: var(--red); padding: 70px 16px; color: #fff;">
     <div class="section-inner classroom-inner">
-      <div class="section-tag" style="background: #fff; color: var(--red); border: none; margin-bottom: 12px;">Không gian học tập thực chiến
-      </div>
+      <div class="section-tag" style="background: #fff; color: var(--red); border: none; margin-bottom: 12px;">Không gian học tập thực chiến</div>
       <h2 class="section-title" style="color: #fff; font-size: 22px !important;">Lớp Học Thật · Người Thật</h2>
-      <p class="section-desc" style="margin-bottom: 25px; color: rgba(255,255,255,0.9); font-size: 13.5px !important; line-height: 1.6;">Mỗi lớp chỉ 15–20 học viên — cô
-        giáo cầm tay chỉ việc từng người, đảm bảo ai cũng làm được đơn hàng thật ngay trong buổi học.</p>
-      <div style="border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); position: relative;">
-        <img src="images/teaching_class.png" alt="Lớp học nhập hàng Trung Quốc thực chiến tại An An Hoa Ngữ Đà Nẵng"
-          style="width:100%; display:block; object-fit:cover; max-height:500px;">
+      <p class="section-desc" style="margin-bottom: 25px; color: rgba(255,255,255,0.9); font-size: 13.5px !important; line-height: 1.6;">Mỗi lớp chỉ 15–20 học viên — cô giáo cầm tay chỉ việc từng người, đảm bảo ai cũng làm được đơn hàng thật ngay trong buổi học.</p>
+
+      <!-- 3-photo layout: 1 large left + 2 stacked right -->
+      <div style="display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 420px;">
+
+        <!-- Ảnh 1 - Lớn, chiếm cả 2 hàng bên trái -->
+        <div style="grid-row: 1 / 3; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <img src="images/teaching_class.png" alt="Lớp học nhập hàng Trung Quốc thực chiến"
+            style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+
+        <!-- Ảnh 2 - Trên, bên phải -->
+        <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <img src="images/2.PNG" alt="Lớp học thực chiến 2"
+            style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+
+        <!-- Ảnh 3 - Dưới, bên phải -->
+        <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <img src="images/3.PNG" alt="Lớp học thực chiến 3"
+            style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+
       </div>
     </div>
   </section>
+
 
   <!-- TESTIMONIALS -->
   <section class="testimonials-section">
@@ -2680,14 +2773,6 @@
       <div class="section-tag" style="display: inline-block !important; margin: 0 auto 12px !important;">Giải đáp thắc mắc</div>
       <h2 class="section-title" style="display: block !important; text-align: center !important; margin: 0 auto 14px !important;">Câu Hỏi Thường Gặp<br><span class="red" style="display: block !important; margin: 0 auto !important; text-align: center !important;">Của Học Viên Mới</span></h2>
       <div class="faq-grid">
-        <details class="faq-item" open>
-          <summary class="faq-q">
-            <span class="faq-q-text">Học xong có làm được không?</span>
-            <span class="faq-icon">▼</span>
-          </summary>
-          <div class="faq-a">Có. Học viên được thực hành trực tiếp trong khoá học — nhiều bạn đặt đơn hàng thật ngay
-            trong buổi học đầu tiên. Sau khoá còn được mentor 1:1 trong 3 năm để hỗ trợ từng bước.</div>
-        </details>
 
         <details class="faq-item">
           <summary class="faq-q">
@@ -2707,20 +2792,11 @@
             sản phẩm với vài trăm nghìn. Khoá học sẽ hướng dẫn cụ thể cách tối ưu vốn từ đầu.</div>
         </details>
 
-        <details class="faq-item">
-          <summary class="faq-q">
-            <span class="faq-q-text">Mặt hàng nào từ Trung Quốc bán được ở Việt Nam?</span>
-            <span class="faq-icon">▼</span>
-          </summary>
-          <div class="faq-a">Rất nhiều: thời trang, gia dụng, đồ gia đình, mỹ phẩm, đồ cho mẹ & bé, thiết bị điện tử...
-            Khoá học sẽ dạy công thức chọn sản phẩm WIN — bán được lâu dài, không theo trend nhất thời.</div>
-        </details>
-
 
 
         <details class="faq-item">
           <summary class="faq-q">
-            <span class="faq-q-text">Không có hộ chiếu có nhập được không?</span>
+            <span class="faq-q-text">Không có thẻ ngân hàng Trung Quốc có nhập hàng được không?</span>
             <span class="faq-icon">▼</span>
           </summary>
           <div class="faq-a"><strong>Bắt buộc phải có hộ chiếu</strong> để xác thực tài khoản và thực hiện các thủ tục
@@ -2759,7 +2835,7 @@
             DÀNH CHO NGƯỜI MỚI</div>
           <div class="price-type">ĐỊNH HƯỚNG NGHỀ ORDER</div>
           <div class="price-subtitle">(Học thử miễn phí)</div>
-          <div class="price-amount">0Đ</div>
+          <div class="price-amount" style="font-size:32px; white-space:nowrap;">0 Đồng</div>
           <ul class="price-features">
             <li>Hiểu tổng quan về "Nghề Order"</li>
             <li>Phân tích tiềm năng 5 sàn TQ</li>
@@ -2772,7 +2848,7 @@
         <div class="price-card">
           <div class="price-type">THỰC HÀNH MUA HÀNG</div>
           <div class="price-subtitle">(Video sẵn & 1 buổi zoom)</div>
-          <div class="price-amount">199K</div>
+          <div class="price-amount" style="font-size:32px; white-space:nowrap;">199.000 VNĐ</div>
           <ul class="price-features">
             <li>Học cách tự mua hàng thực tế</li>
             <li>Nhận ngay kho video hướng dẫn</li>
@@ -2785,7 +2861,7 @@
         <div class="price-card">
           <div class="price-type">NHẬP HÀNG TRUNG QUỐC THỰC CHIẾN</div>
           <div class="price-subtitle">(Elearning - Video sẳn)</div>
-          <div class="price-amount">4TR</div>
+          <div class="price-amount" style="font-size:32px; white-space:nowrap;">4.000.000 VNĐ</div>
           <ul class="price-features">
             <li>21 bài học chia 4 Module</li>
             <li>Khoá Tiếng Trung cơ bản</li>
@@ -2800,7 +2876,7 @@
           <div class="price-badge-top">🔥 Phổ biến nhất</div>
           <div class="price-type">CHUYÊN SÂU NGHỀ ORDER</div>
           <div class="price-subtitle">(Online)</div>
-          <div class="price-amount">6TR</div>
+          <div class="price-amount" style="font-size:32px; white-space:nowrap;">6.000.000 VNĐ</div>
           <ul class="price-features">
             <li>4 chặng học trực tiếp</li>
             <li>Thực hành trên 5 sàn TQ</li>
@@ -2814,7 +2890,7 @@
         <div class="price-card">
           <div class="price-type">CHUYÊN SÂU NGHỀ ORDER</div>
           <div class="price-subtitle">(Offline)</div>
-          <div class="price-amount">8TR</div>
+          <div class="price-amount" style="font-size:32px; white-space:nowrap;">8.000.000 VNĐ</div>
           <ul class="price-features">
             <li>Học trực tiếp cùng cô Tịnh</li>
             <li>Cầm tay chỉ việc tại VP</li>
@@ -2832,7 +2908,7 @@
     <div class="section-inner">
       <div style="text-align: center; margin-bottom: 40px;">
         <div class="section-tag" style="background:#fff5f6; color:#bf2436; border: 1px solid #bf2436;">Quà tặng đặc biệt</div>
-        <h2 class="section-title">Combo 6 Quà Tặng<br><span class="red">Nhận Ngay Khi Đăng Ký Trọn Bộ</span></h2>
+        <h2 class="section-title">Combo 6 Quà Tặng<br><span class="red">Nhận Ngay Khi Đăng Ký<br>Trọn Bộ</span></h2>
       </div>
 
       <div class="bonus-slider-container">
@@ -2901,6 +2977,51 @@
   </section>
 
 
+  <!-- PAST CLASSES GALLERY -->
+  <section style="background: #0d0204; padding: 80px 16px;">
+    <div class="section-inner">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <div class="section-tag" style="background: rgba(255,255,255,0.08); color: var(--gold); border: 1px solid rgba(249,223,172,0.3); display: inline-block;">Hình ảnh thực tế</div>
+        <h2 class="section-title" style="color: #fff; margin-top: 12px;">1 Vài Lớp Học <span style="color: var(--gold);">Trước Đây</span></h2>
+        <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 8px;">Không gian học tập thực chiến — nơi hàng trăm học viên bắt đầu hành trình nghề Order</p>
+      </div>
+
+      <!-- Mosaic layout: 1 large left + 3 right (1 wide top + 2 bottom) -->
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 240px 200px; gap: 10px;">
+
+        <!-- Ảnh 1 - Lớn, chiếm full chiều cao bên trái -->
+        <div style="grid-row: 1 / 3; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+          <img src="images/lớp 1.jpg" alt="Lớp học nhập hàng Trung Quốc thực chiến"
+            style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
+            onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Ảnh 2 - Trên bên phải, full width -->
+        <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+          <img src="images/lớp 2.jpg" alt="Lớp học thực chiến 2"
+            style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
+            onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Ảnh 3 và 4 - Hàng dưới bên phải chia đôi -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+            <img src="images/lớp 3.JPG" alt="Lớp học thực chiến 3"
+              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
+              onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          </div>
+          <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5);">
+            <img src="images/lớp 4.JPG" alt="Lớp học thực chiến 4"
+              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s ease;"
+              onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
   <!-- RESTRUCTURED COMMIT & FORM SECTION -->
   <section class="guarantee-section" id="dang-ky">
     <img src="images/student_feedback.png" alt="Student Feedback" class="guarantee-bg-img">
@@ -2920,7 +3041,7 @@
       <!-- RIGHT: FORM -->
       <div class="register-form-v2" id="form-register">
         <div style="text-align:center; margin-bottom:24px;">
-          <strong style="font-size:20px; color:var(--red);">📋 Đăng Ký Tư Vấn & Giữ Chỗ</strong>
+          <strong style="font-size:20px; color:var(--red);">🎁 NHẬN LỘ TRÌNH MIỄN PHÍ</strong>
           <p style="font-size:14px; color:var(--text-muted); margin-top:4px;">Mentor sẽ gọi lại trong 30 phút (giờ hành chính)</p>
         </div>
         
@@ -2943,11 +3064,11 @@
           <label for="reg-course">Hình thức học mong muốn</label>
           <select id="reg-course">
             <option value="">-- Chọn hình thức học --</option>
-            <option value="Dinh huong 0D">ĐỊNH HƯỚNG NGHỀ ORDER (Học thử 0Đ)</option>
-            <option value="Workshop 199K">THỰC HÀNH MUA HÀNG (Workshop 199K)</option>
-            <option value="Elearning 4TR">NHẬP HÀNG THỰC CHIẾN (E-learning 4TR)</option>
-            <option value="Online 6TR">CHUYÊN SÂU NGHỀ ORDER (Online 6TR)</option>
-            <option value="Offline 8TR">CHUYÊN SÂU NGHỀ ORDER (Offline 8TR)</option>
+            <option value="Dinh huong 0D">ĐỊNH HƯỚNG NGHỀ ORDER         —  0 Đồng</option>
+            <option value="Workshop 199K">THỰC HÀNH MUA HÀNG             —  199.000 VNĐ</option>
+            <option value="Elearning 4TR">NHẬP HÀNG THỰC CHIẾN (Online)  —  4.000.000 VNĐ</option>
+            <option value="Online 6TR">CHUYÊN SÂU NGHỀ ORDER (Online)  —  6.000.000 VNĐ</option>
+            <option value="Offline 8TR">CHUYÊN SÂU NGHỀ ORDER (Offline) —  8.000.000 VNĐ</option>
           </select>
         </div>
 
@@ -2984,7 +3105,7 @@
             <span>⚫</span> TikTok
           </a>
           <a href="https://hocnhaphangtrungquoc.com" class="social-link-card" target="_blank">
-            <span>🌐</span> Website Chính Thức
+            <span>🌐</span> Website
           </a>
         </div>
       </div>
