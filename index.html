@@ -3269,7 +3269,7 @@
     // =============================================
     // ⚙️  CẤU HÌNH — dán URL Apps Script vào đây
     // =============================================
-    var APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTUrbwijeqm5E9oaRbjAs9Kd9CuEI1nhTl2UJVOC10mD3fxyCkxbyFw1bVPrIONAkz/exec';
     // =============================================
 
     function scrollToForm() {
@@ -3337,23 +3337,29 @@
     }
 
     function submitForm(formType) {
-      var name, phone, city, btn;
+      var name, phone, city, course, goal, btn;
 
       if (formType === 'hero') {
-        name = document.getElementById('hero-name');
-        phone = document.getElementById('hero-phone');
-        city = document.getElementById('hero-city');
-        btn = document.getElementById('hero-btn');
+        name   = document.getElementById('hero-name');
+        phone  = document.getElementById('hero-phone');
+        city   = document.getElementById('hero-city');
+        course = document.getElementById('hero-course');
+        goal   = null;
+        btn    = document.getElementById('hero-btn');
       } else if (formType === 'trial') {
-        name = document.getElementById('trial-name');
-        phone = document.getElementById('trial-phone');
-        city = document.getElementById('trial-city');
-        btn = document.getElementById('trial-btn');
+        name   = document.getElementById('trial-name');
+        phone  = document.getElementById('trial-phone');
+        city   = document.getElementById('trial-city');
+        course = null;
+        goal   = null;
+        btn    = document.getElementById('trial-btn');
       } else {
-        name = document.getElementById('reg-name');
-        phone = document.getElementById('reg-phone');
-        city = document.getElementById('reg-city');
-        btn = document.getElementById('reg-btn');
+        name   = document.getElementById('reg-name');
+        phone  = document.getElementById('reg-phone');
+        city   = document.getElementById('reg-city');
+        course = document.getElementById('reg-course');
+        goal   = document.getElementById('reg-goal'); // Thêm nếu sau này có
+        btn    = document.getElementById('reg-btn');
       }
 
       // — Validation —
@@ -3389,6 +3395,8 @@
         name: name.value.trim(),
         phone: phone.value.trim(),
         city: city ? city.value.trim() : '',
+        goal: goal ? goal.value : '',
+        hinhthuc: course ? course.value : '',
         source: source,
         utm_source: utmParams.get('utm_source') || '',
         utm_medium: utmParams.get('utm_medium') || '',
@@ -3401,32 +3409,33 @@
         fetch(APPS_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         })
           .then(function () {
-            onSubmitSuccess(btn, name, phone, city, goal, type);
+            onSubmitSuccess(btn, name, phone, city, goal, course);
           })
           .catch(function () {
             // Vẫn show success — no-cors không cho biết lỗi thật
-            onSubmitSuccess(btn, name, phone, city, goal, type);
+            onSubmitSuccess(btn, name, phone, city, goal, course);
           });
       } else {
         // Chưa cấu hình Apps Script — demo mode
         setTimeout(function () {
-          onSubmitSuccess(btn, name, phone, city, goal, type);
+          onSubmitSuccess(btn, name, phone, city, goal, course);
         }, 800);
       }
     }
 
-    function onSubmitSuccess(btn, name, phone, city, goal, type) {
-      btn.innerHTML = '✅ Đã gửi thành công!';
+    function onSubmitSuccess(btn, name, phone, city, goal, course) {
+      btn.innerHTML = '✅ Đăng ký thành công!';
       btn.style.background = '#2d7a3a';
       showModal();
       // Reset form sau 3s
       setTimeout(function () {
         name.value = ''; phone.value = '';
         if (city) city.value = '';
+        if (goal) goal.value = '';
+        if (course) course.value = '';
         if (btn.id === 'hero-btn') {
           btn.innerHTML = '🚀 Nhận Tư Vấn Ngay — Miễn Phí 100%';
         } else if (btn.id === 'trial-btn') {
